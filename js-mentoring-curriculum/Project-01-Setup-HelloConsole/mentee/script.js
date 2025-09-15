@@ -8,3 +8,7 @@ STEP 1 — Logging
 STEP 2 — Extra
   Create a second console message that reads: Console is working.
 */
+
+console.log("javascript");
+console.log("console is working");
+console.log("hello world");
