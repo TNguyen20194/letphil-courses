@@ -22,3 +22,27 @@ STEP 3 — Update two let variables and log again:
   Increase age by 1 and set hasCoupon to true.
   Log age and hasCoupon after the change.
 */
+
+const firstName = "Alex";
+const lastName = "Maiella";
+let age = 28;
+let isMember = true;
+let city = "chicago";
+let itemsInCart = 3;
+let hasCoupon = false;
+const favoriteLanguage = "Javascript";
+
+console.log(firstName);
+console.log(lastName);
+console.log(age);
+console.log(isMember);
+console.log(city);
+console.log(itemsInCart);
+console.log(hasCoupon);
+console.log(favoriteLanguage);
+
+age = age + 1;
+hasCoupon = true;
+
+console.log(age);
+console.log(hasCoupon);

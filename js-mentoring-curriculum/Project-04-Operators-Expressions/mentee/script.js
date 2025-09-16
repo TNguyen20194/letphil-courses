@@ -12,6 +12,8 @@ STEP 1 — Numbers
   quot equals n1 divided by n2.
   mod equals the remainder of n1 divided by n2.
 
+  
+
 STEP 2 — Compare
   eqLoose checks if the number 5 is loosely equal to the text "5".
   eqStrict checks if the number 5 is strictly equal to the text "5".
@@ -36,3 +38,50 @@ STEP 6 — Logging order
   Log results in this order:
   sum, diff, prod, quot, mod, eqLoose, eqStrict, greater, andResult, orResult, notResult, joined, template, precOne, precTwo.
 */
+
+const n1 = 10,
+  n2 = 3;
+
+let sum = n1 + n2;
+
+let diff = n1 - n2;
+
+let prod = n1 * n2;
+
+let quot = n1 / n2;
+
+let mod = n1 % n2;
+
+let eqLoose = 5 == "5";
+let eqStrict = 5 === "5";
+let greater = 10 > 7;
+
+andResult = true && false;
+orResult = true || false;
+notResult = !false;
+
+const first = "Hello";
+const last = "World";
+const joined = first + "," + last + "!";
+const template = `${first}, ${last}!`;
+
+precOne = 2 + 3 * 4;
+precTwo = (2 + 3) * 4;
+
+console.log(
+  sum,
+  diff,
+  prod,
+  quot,
+  mod,
+  eqLoose,
+  eqStrict,
+  greater,
+  andResult,
+  orResult,
+  notResult,
+  joined,
+  template,
+  precOne,
+  precTwo
+);

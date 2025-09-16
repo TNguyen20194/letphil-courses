@@ -21,3 +21,29 @@ STEP 3 — Extra checks:
   Log whether Array check using an array checking helper returns true for anArray.
   Log a note that typeof null is the string object (historic quirk).
 */
+
+const aString = "hello";
+const aNumber = 42;
+const aBoolean = true;
+const aNull = null;
+let anUndefined;
+let anObject = { label: "sample" };
+const anArray = [1, 2, 3];
+function aFunction() {
+  return "hi";
+}
+
+console.log(
+  typeof aString,
+  typeof aNumber,
+  typeof aBoolean,
+  typeof aNull,
+  typeof anUndefined,
+  typeof anObject,
+  typeof anArray,
+  typeof aFunction()
+);
+
+console.log(Array.isArray(anArray));
+
+console.log("typeof null is the string object historic quirk");
