@@ -41,3 +41,101 @@ STEP 4 — Builder
 STEP 5 — Wiring
   When buildBtn is clicked, run buildList.
 */
+
+
+const textValue = "hello";
+const numberValue = 42;
+const boolValue = true;
+const nullValue = null;
+let undefValue;
+const objValue = {key: "sample"};
+const arrValue = [1, 2, 3];
+const fnValue = function() {
+  return "yo";
+}
+
+// STEP 1
+let values = [
+  textValue,
+  numberValue,
+  boolValue,
+  nullValue,
+  undefValue,
+  objValue,
+  arrValue,
+  fnValue
+]
+
+console.log(values)
+
+//  STEP 2
+function describeType(value) {
+  if(value === null) {
+    return "null";
+  }
+  if(Array.isArray(value)) {
+    return "array";
+  }
+  if(typeof value === "function") {
+    return "function";
+  }
+  return typeof value;
+}
+
+console.log(describeType(arrValue));
+
+
+// STEP 3
+/*
+ - Use JSON.strinigfy() to display internal structure of object/ array
+ - If JSON.stringify() fails
+ - Use JS built-in function String() to display the value in text form
+
+*/
+function toDisplay(value) {
+  // Exluding null since null is not an object
+  if(typeof value === "object" && typeof value !== null) {
+    return JSON.stringify(value);
+  }
+
+  // .toString() method displays the function as text
+  if(typeof value === "function") {
+    return value.toString();
+  }
+
+  if(Array.isArray(value)) {
+    return JSON.stringify(value);
+  }
+
+  return String(value)
+}
+
+
+// STEP 4
+
+function buildList() {
+  const outputList = document.getElementById("outputList");
+  outputList.innerHTML = "";
+
+  values.forEach(value => {
+    const listItems = document.createElement("li");
+    listItems.classList.add('listStyle');
+    listItems.textContent = toDisplay(value) + " - " + describeType(value);
+
+    outputList.appendChild(listItems);
+  })
+}
+
+function resetList() {
+  const outputList = document.getElementById("outputList");
+  outputList.innerHTML = "";
+}
+
+// STEP 5
+const buildBtn = document.getElementById("buildBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+buildBtn.addEventListener("click", () => {
+  buildList();
+})
+
