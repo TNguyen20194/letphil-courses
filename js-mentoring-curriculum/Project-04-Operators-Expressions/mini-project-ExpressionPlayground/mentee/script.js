@@ -99,7 +99,7 @@ const renderResults = function(a, b) {
 
   allKeys.forEach(key => {
     const listItem = document.createElement('li');
-    listItem.textContent = `${key}: ${results[kegity]}`;
+    listItem.textContent = `${key}: ${results[key]}`;
     resultList.appendChild(listItem);
   });
 
