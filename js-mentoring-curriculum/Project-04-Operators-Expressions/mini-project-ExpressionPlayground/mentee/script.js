@@ -98,6 +98,7 @@ const renderResults = function(results) {
 
   allKeys.forEach(key => {
     const listItem = document.createElement('li');
+    listItem.classList.add("listStyle");
     listItem.textContent = `${key}: ${results[key]}`;
     resultList.appendChild(listItem);
   });
