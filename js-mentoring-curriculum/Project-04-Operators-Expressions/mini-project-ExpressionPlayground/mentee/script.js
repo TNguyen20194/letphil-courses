@@ -41,3 +41,78 @@ STEP 4 — Render
 STEP 5 — Handler
   When runBtn is clicked, read a and b, compute, and render.
 */
+
+
+// STEP 1
+const aInput = document.getElementById("aInput");
+const bInput = document.getElementById("bInput");
+const runBtn = document.getElementById("runBtn");
+const resultList = document.getElementById("resultList");
+
+// console.log(aInput, bInput, runBtn, resultList)
+
+
+// STEP 2
+const readNumber = function(value) {
+  return Number(value);
+}
+
+// STEP 3
+const computeAll = function(a, b) {
+  return {
+    sum: a + b,
+    diff: a - b,
+    prod: a * b,
+    quot: a / b,
+    mod: a % b,
+    eqLoose: a == b,
+    eqStrict: a === b,
+    greater: a > b,
+    bothEven: (a % 2 === 0) && (b % 2 === 0),
+    anyOver10: (a > 10) || (b > 10),
+    notEqual: a !== b,
+    precOne: a + b * 2,
+    precTwo: (a + b) * 2,
+  };
+};
+
+const allKeys = [
+  "sum",
+  "diff",
+  "prod",
+  "quot",
+  "mod",
+  "eqLoose",
+  "eqStrict",
+  "greater",
+  "bothEven",
+  "anyOver10",
+  "notEqual",
+  "precOne",
+  "precTwo"
+]
+
+// STEP 4
+const renderResults = function(a, b) {
+  const results = computeAll(a, b);
+  resultList.innerHTML = "";
+
+  allKeys.forEach(key => {
+    const listItem = document.createElement('li');
+    listItem.textContent = `${key}: ${results[kegity]}`;
+    resultList.appendChild(listItem);
+  });
+
+  // for(const key in results) {
+  //   const listItem = document.createElement('li');
+  //   listItem.textContent = `${key}: ${results[key]}`;
+  //   resultList.appendChild(listItem);
+  // };
+}
+
+runBtn.addEventListener("click", () => {
+  const a = readNumber(aInput.value);
+  const b = readNumber(bInput.value);
+  return renderResults(a, b);
+})
+

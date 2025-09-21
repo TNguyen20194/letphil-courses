@@ -93,7 +93,7 @@ console.log(describeType(arrValue));
 
 */
 function toDisplay(value) {
-  // Exluding null since null is not an object
+  // Excluding null since null is not an object
   if(typeof value === "object" && typeof value !== null) {
     return JSON.stringify(value);
   }
@@ -133,7 +133,6 @@ function resetList() {
 
 // STEP 5
 const buildBtn = document.getElementById("buildBtn");
-const resetBtn = document.getElementById("resetBtn");
 
 buildBtn.addEventListener("click", () => {
   buildList();
