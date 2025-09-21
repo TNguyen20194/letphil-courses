@@ -53,8 +53,8 @@ const resultList = document.getElementById("resultList");
 
 
 // STEP 2
-const readNumber = function(value) {
-  return Number(value);
+const readNumber = function(input) {
+  return Number(input.value);
 }
 
 // STEP 3
@@ -93,8 +93,7 @@ const allKeys = [
 ]
 
 // STEP 4
-const renderResults = function(a, b) {
-  const results = computeAll(a, b);
+const renderResults = function(results) {
   resultList.innerHTML = "";
 
   allKeys.forEach(key => {
@@ -111,8 +110,10 @@ const renderResults = function(a, b) {
 }
 
 runBtn.addEventListener("click", () => {
-  const a = readNumber(aInput.value);
-  const b = readNumber(bInput.value);
-  return renderResults(a, b);
+  const a = readNumber(aInput);
+  const b = readNumber(bInput);
+  const results = computeAll(a, b);
+
+  return renderResults(results);
 })
 
