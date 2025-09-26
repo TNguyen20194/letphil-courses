@@ -2,7 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Mentee</title>
+    <title>TaskTracker Lite</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <!-- ======================================================================
@@ -26,12 +27,29 @@
          • <button id="addBtn" type="submit">Add</button>
        * <p id="status" aria-live="polite"></p>
        * <ul id="taskList"></ul>
--->
+        -->
+
 
     <!-- STEP 2 (CONNECT CSS):
      - Add <link rel="stylesheet" href="styles.css"> in <head>. -->
 
     <!-- STEP 3 (CONNECT JS):
      - Add <script src="script.js"></script> before </body> -->
+
+
+     <header class="header">
+      <h1>Task Tracker Lite</h1>
+      <button id="themeBtn" type="button" aria-pressed="false">Toggle Theme</button>
+     </header>
+     <main class="taskForm">
+      <input type="text" id="taskInput">
+      <button id="addBtn" type="submit">Add</button>
+      <p id="status" aria-live="polite"></p>
+      <ul id="taskList">
+        
+      </ul>
+
+     </main>
+     <script src="script.js"></script>
   </body>
 </html>
