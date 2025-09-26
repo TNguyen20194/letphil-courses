@@ -13,3 +13,29 @@
 // - default: result = "Unknown tier."
 //
 // STEP 4: DISPLAY THE BENEFITS IN result.textContent
+
+
+const tierSelect = document.getElementById("tierSelect");
+const showBtn = document.getElementById("showBtn");
+const result = document.getElementById("result");
+
+
+showBtn.addEventListener("click", () => {
+    let tier = tierSelect.value;
+
+    switch(tier) {
+        case "bronze":
+            tier = "Bronze: Basic support.";
+            break;
+        case "silver":
+            tier = "Silver: Priority support + discounts."
+            break;
+        case "gold":
+            tier = "Gold: 24/7 support + VIP access."
+            break;
+        default:
+            tier = "Unknown tier"
+    };
+
+    result.innerHTML = tier;
+})
