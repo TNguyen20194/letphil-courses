@@ -24,7 +24,7 @@ checkBtn.addEventListener("click", () => {
     if(isNaN(input) || input < 0 || input === "") {
         result.textContent = "Please enter a valid input";
         return;
-    }
+    };
 
     const label = input >= 18 ? "Adult" : "Minor";
 

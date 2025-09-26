@@ -28,3 +28,47 @@
 // - If isExpress === "yes" → add 15
 //
 // STEP 6: DISPLAY TOTAL AS A NICE MESSAGE
+
+const country = document.getElementById("country");
+const weight = document.getElementById("weight");
+const isExpress = document.getElementById("isExpress");
+const calcBtn = document.getElementById("calcBtn");
+const result = document.getElementById("result");
+
+calcBtn.addEventListener("click", () => {
+    const weightInput = weight.value;
+    const countryCode = country.value;
+    const expressShipping = isExpress.value;
+    let baseCost;
+
+    console.log(expressShipping)
+
+    if(isNaN(weightInput) || weightInput <= 0 || weightInput === ""){
+        result.classList.add("warning");
+        result.textContent = "Please provide a valid weight value";
+        return;
+    }
+
+    if(countryCode === "US") {
+        baseCost = 5
+    } else if(countryCode === "CA") {
+        baseCost = 7
+    } else {
+        baseCost = 10
+    };
+
+    if(weightInput > 5) {
+         baseCost += 10;
+    } else if(weightInput > 1) {
+         baseCost += 5;
+    } else {
+         baseCost;
+    }
+
+    if (expressShipping === "yes") {
+        baseCost +=15
+    }
+
+    result.classList.remove("warning");
+    return result.textContent = `Total shipping cost: $${baseCost}`
+})
