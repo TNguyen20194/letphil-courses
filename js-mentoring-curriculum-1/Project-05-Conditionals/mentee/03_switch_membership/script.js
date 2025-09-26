@@ -37,5 +37,5 @@ showBtn.addEventListener("click", () => {
             tier = "Unknown tier"
     };
 
-    result.innerHTML = tier;
+    result.textContent = tier;
 })
