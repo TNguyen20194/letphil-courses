@@ -36,17 +36,19 @@ const calcBtn = document.getElementById("calcBtn");
 const result = document.getElementById("result");
 
 calcBtn.addEventListener("click", () => {
-    const weightInput = weight.value;
+    const weightInput = Number(weight.value);
     const countryCode = country.value;
     const expressShipping = isExpress.value;
     let baseCost;
 
     console.log(expressShipping)
 
-    if(isNaN(weightInput) || weightInput <= 0 || weightInput === ""){
+    if(weightInput === "" || isNaN(weightInput) || weightInput <= 0 ){
         result.classList.add("warning");
         result.textContent = "Please provide a valid weight value";
         return;
+    } else {
+        result.classList.remove("warning");
     }
 
     if(countryCode === "US") {
@@ -69,6 +71,5 @@ calcBtn.addEventListener("click", () => {
         baseCost +=15
     }
 
-    result.classList.remove("warning");
-    return result.textContent = `Total shipping cost: $${baseCost}`
+    result.textContent = `Total shipping cost: $${baseCost}`
 })
