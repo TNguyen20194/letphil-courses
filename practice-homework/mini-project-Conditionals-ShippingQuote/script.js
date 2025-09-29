@@ -46,59 +46,56 @@ STEP 8 — Wiring
   When quoteBtn is clicked, compute and show the quote.
 */
 
-const weightInput = document.getElementById("weightInput");
-const distanceInput = document.getElementById("distanceInput");
-const isMemberInput = document.getElementById("isMemberInput");
-const quoteBtn = document.getElementById("quoteBtn");
-const output = document.getElementById("output");
+const weightInput = document.getElementById('weightInput')
+const distanceInput = document.getElementById('distanceInput')
+const isMemberInput = document.getElementById('isMemberInput')
+const quoteBtn = document.getElementById('quoteBtn')
+const output = document.getElementById('output')
 
 // Base number
-const baseFee = 5;
-const perKg = 1.2;
+const baseFee = 5
+const perKg = 1.2
 
-quoteBtn.addEventListener("click", () => {
-  const weight = Number(weightInput.value);
-  const distance = Number(distanceInput.value);
-  const isMember = isMemberInput.checked;
-
-  if( isNaN(weight) || weight <= 0 || isNaN(distance) ||distance <= 0) {
-    output.classList.add("warning");
-    output.textContent = "Enter valid values";
-    return;
-  } else {
-    output.classList.remove("warning");
-    output.textContent = "";
-  }
+quoteBtn.addEventListener('click', () => {
+  const weight = Number(weightInput.value)
+  const distance = Number(distanceInput.value)
+  const isMember = isMemberInput.checked
 
   //Surcharge
-  let surcharge;
+  let surcharge
 
-  if(distance > 1000) {
-    surcharge = 15;
-  } else if(distance > 500) {
+  if (distance > 1000) {
+    surcharge = 15
+  } else if (distance > 500) {
     surcharge = 7
   } else {
     surcharge = 0
   }
 
   // Oversize fee
-  const oversize = weight > 20 ? 10 : 0;
+  const oversize = weight > 20 ? 10 : 0
 
   // Member discount
-  const discountRate = isMember ? 0.10 : 0;
+  const discountRate = isMember ? 0.1 : 0
 
-  const preDiscount = baseFee + (weight * perKg) + surcharge + oversize;
+  const preDiscount = baseFee + weight * perKg + surcharge + oversize
   const discountAmount = preDiscount * discountRate
   const total = preDiscount - discountAmount
 
-
-  output.textContent = `
-  Shipping Quote
-  Base: $${baseFee.toFixed(2)}
-  Weight: $${(weight * perKg).toFixed(2)}
-  Surcharge: $${surcharge.toFixed(2)}
-  Oversize: $${oversize.toFixed(2)}
-  Discount: -$${discountAmount.toFixed(2)}
-  Total: $${total.toFixed(2)}
+   if (isNaN(weight) || weight <= 0 || isNaN(distance) || distance <= 0) {
+    output.classList.add('warning')
+    output.textContent = 'Enter valid values'
+    return
+  } else {
+    output.classList.remove('warning')
+    output.textContent = `
+Shipping Quote
+Base: $${baseFee.toFixed(2)}
+Weight: $${(weight * perKg).toFixed(2)}
+Surcharge: $${surcharge.toFixed(2)}
+Oversize: $${oversize.toFixed(2)}
+Discount: -$${discountAmount.toFixed(2)}
+Total: $${total.toFixed(2)}
   `
+  }
 })
