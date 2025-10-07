@@ -85,14 +85,23 @@ setTimeout(function () {
 
 ## ⚖️ Key Differences
 
-| Function Type           | Hoisted? | `this` behavior       | Typical Use Case           | Reusability  |
-| ----------------------- | -------- | --------------------- | -------------------------- | ------------ |
-| Traditional Declaration | ✅ Yes   | Own `this`            | General reusable utilities | ✅ Named     |
-| Function Expression     | ❌ No    | Own `this`            | Store/pass as variable     | ✅ Named var |
-| Arrow Function          | ❌ No    | Inherits outer `this` | Short code, array methods  | ✅ Named var |
-| Anonymous Function      | ❌ No    | Depends on wrapper    | Quick callbacks            | ❌ Not named |
+| Function Type           | Hoisted? | `this` behavior       | Typical Use Case           | Reusability        |
+| ----------------------- | -------- | --------------------- | -------------------------- | ------------------ |
+| Traditional Declaration | ✅ Yes   | Own `this`            | General reusable utilities | ✅ Named           |
+| Function Expression     | ❌ No    | Own `this`            | Store/pass as variable     | ✅ Named const let |
+| Arrow Function          | ❌ No    | Inherits outer `this` | Short code, array methods  | ✅ Named const let |
+| Anonymous Function      | ❌ No    | Depends on wrapper    | Quick callbacks            | ❌ Not named       |
 
 ---
+
+const person = {
+name: "John",
+greet: () => {
+console.log("Hi, my name is " + this.name);
+}
+};
+
+person.greet() Hi, my name is john
 
 ## 💡 Tiny Syntax Cheatsheet
 

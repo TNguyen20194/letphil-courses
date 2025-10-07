@@ -2,6 +2,7 @@
 //
 // STEP 1: GET ELEMENTS
 // - select#tierSelect, button#showBtn, p#result
+
 //
 // STEP 2: ADD CLICK LISTENER
 // - Read the current value of the select (e.target.value or tierSelect.value).
@@ -14,11 +15,15 @@
 //
 // STEP 4: DISPLAY THE BENEFITS IN result.textContent
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> upstream/main
 const tierSelect = document.getElementById("tierSelect");
 const showBtn = document.getElementById("showBtn");
 const result = document.getElementById("result");
 
+<<<<<<< HEAD
 
 showBtn.addEventListener("click", () => {
     let tier = tierSelect.value;
@@ -39,3 +44,25 @@ showBtn.addEventListener("click", () => {
 
     result.textContent = tier;
 })
+=======
+showBtn.addEventListener("click", () => {
+  const tier = tierSelect.value;
+  let message = "";
+
+  switch (tier) {
+    case "bronze":
+      message = "Bronze: Basic support";
+      break;
+    case "silver":
+      message = "Silver: Priority support + discounts";
+      break;
+    case "gold":
+      message = "Gold: 24/7 support + VIP access.";
+      break;
+    default:
+      message = "Unknown tier.";
+  }
+
+  result.textContent = message;
+});
+>>>>>>> upstream/main
