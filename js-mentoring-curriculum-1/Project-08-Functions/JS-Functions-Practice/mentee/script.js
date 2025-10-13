@@ -146,8 +146,34 @@ setTimeout(function () {
 
 // STEP 20: Use forEach on an array with an anonymous function to log each item
 
+const arrayList = ["Greece", 27, "Maria", 25, 72, "Welcome"];
+
+arrayList.forEach(function(item) {
+  console.log(item)
+})
+
 // STEP 21: Use map with an anonymous function to double numbers in an array
+
+const numberArray = [1, 25, 18, 20, 37];
+
+numberArray.map(function(item) {
+  console.log(item * 2);
+})
 
 // STEP 22: Use filter with an anonymous function to keep only even numbers
 
+const list = [1, 3, 4, 7, 28, 32, 77, 72, 86, 2, 5, 9];
+
+list.filter(function(item) {
+  if(item % 2 === 0) {
+    console.log(item)
+  }
+})
+
 // STEP 23: Use reduce with an anonymous function to sum numbers in an array
+
+let sum = list.reduce(function(acc, num) {
+  return acc + num
+}, 0)
+
+console.log(sum)
