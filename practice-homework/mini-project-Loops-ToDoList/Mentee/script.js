@@ -23,11 +23,36 @@ const taskCount = document.getElementById("taskCount");
 generateBtn.addEventListener("click", () =>{
     taskList.innerHTML = "";
 
-    for(let i = 0; i < tasks.length; i++) {
+    // +++ FOR LOOP METHOD +++
+    // for(let i = 0; i < tasks.length; i++) {
+    //     const listItem = document.createElement("li");
+    //     listItem.textContent = tasks[i];
+    //     taskList.appendChild(listItem)
+    // };
+
+    // +++ WHILE LOOP METHOD +++
+    // let taskIndex = 0;
+    // while(taskIndex < tasks.length) {
+    //     const listItem = document.createElement("li");
+    //     listItem.textContent = tasks[taskIndex];
+    //     taskIndex++;
+    //     taskList.appendChild(listItem);
+    // }
+
+    // +++ FOR OF LOOP METHOD +++
+    // for(const value of tasks){
+    //     const listItem = document.createElement("li");
+    //     listItem.textContent = value;
+    //     taskList.appendChild(listItem)
+    // }
+
+    // +++ forEach LOOP METHOD +++
+    tasks.forEach(value => {
         const listItem = document.createElement("li");
-        listItem.textContent = tasks[i];
+        listItem.textContent = value;
         taskList.appendChild(listItem)
-    };
-    
-    taskCount.innerHTML = `The total task count is: <strong>${tasks.length}</strong> tasks`
+    })
+
+    taskCount.innerHTML = `The total task count is: <strong>${tasks.length} tasks</strong> `
 })
+
