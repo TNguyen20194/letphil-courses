@@ -11,3 +11,23 @@
 //   - Use for...of to add tasks with prefix "(for...of)".
 //   - Use forEach to add tasks with prefix "(forEach)".
 // STEP 5 — Show total task count in #taskCount.
+
+
+const tasks = ["Study", "Exercise", "Clean up", "Do magic", "Listen to music"];
+
+const generateBtn = document.getElementById("btnGenerate");
+const taskList = document.getElementById("taskList");
+const taskCount = document.getElementById("taskCount");
+
+
+generateBtn.addEventListener("click", () =>{
+    taskList.innerHTML = "";
+
+    for(let i = 0; i < tasks.length; i++) {
+        const listItem = document.createElement("li");
+        listItem.textContent = tasks[i];
+        taskList.appendChild(listItem)
+    };
+    
+    taskCount.innerHTML = `The total task count is: <strong>${tasks.length}</strong> tasks`
+})
