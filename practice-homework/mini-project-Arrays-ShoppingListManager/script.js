@@ -71,7 +71,9 @@ function handleAdd() {
     renderAll();
   } else {
     warning.textContent= "Empty value cannot be added. Please provide a valid item.";
-  }
+  };
+
+  itemInput.value = "";
 }
 
 // Remove LAST
@@ -83,8 +85,7 @@ function handleRemove() {
 // Handle CLEAR
 function handleClear() {
   items.length = 0;
-  list.innerHTML = "";
-  countLabel.innerHTML = "";
+  renderAll();
 }
 
 addBtn.addEventListener("click", handleAdd);
