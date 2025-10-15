@@ -28,3 +28,66 @@ STEP 6 — Wiring
   Wire addBtn to handleAdd, removeBtn to handleRemove, and clearBtn to handleClear.
   Call renderAll once so the page reflects the current state.
 */
+
+
+const itemInput = document.getElementById("itemInput");
+const addBtn = document.getElementById("addBtn");
+const removeBtn = document.getElementById("removeBtn");
+const clearBtn = document.getElementById("clearBtn");
+const list = document.getElementById("list");
+const countLabel = document.getElementById("countLabel");
+const warning = document.getElementById("warning");
+
+
+const items = [];
+
+// Remove warning on input
+itemInput.addEventListener("input", () => {
+  warning.textContent = ""
+})
+
+// Handle RENDER
+function renderAll() {
+
+  list.innerHTML = "";
+
+  items.forEach(item => {
+    const listItem = document.createElement("li");
+    listItem.textContent = item;
+    list.appendChild(listItem);
+
+  });
+
+  countLabel.innerHTML = `Count: <strong>${items.length} items</strong>`
+}
+
+// Handle ADD
+function handleAdd() {
+  const input = itemInput.value.trim();
+  warning.textContent = ""
+
+  if(input !== ""){
+    items.push(input);
+    renderAll();
+  } else {
+    warning.textContent= "Empty value cannot be added. Please provide a valid item.";
+  }
+}
+
+// Remove LAST
+function handleRemove() {
+  items.pop();
+  renderAll();
+}
+
+// Handle CLEAR
+function handleClear() {
+  items.length = 0;
+  list.innerHTML = "";
+  countLabel.innerHTML = "";
+}
+
+addBtn.addEventListener("click", handleAdd);
+removeBtn.addEventListener("click", handleRemove);
+clearBtn.addEventListener("click", handleClear);
+
