@@ -102,6 +102,8 @@ function handleClear() {
   warning.textContent = "";
 }
 
+renderAll();
+
 addBtn.addEventListener("click", handleAdd);
 removeBtn.addEventListener("click", handleRemove);
 clearBtn.addEventListener("click", handleClear);
