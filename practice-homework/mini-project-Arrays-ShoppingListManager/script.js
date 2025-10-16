@@ -78,7 +78,12 @@ function handleAdd() {
 
 // Remove LAST
 function handleRemove() {
-  items.pop();
+  if(items.length > 0){
+    items.pop();
+    warning.textContent = ""
+  } else {
+    warning.textContent = "There is no item in your list."
+  }
   renderAll();
 }
 
