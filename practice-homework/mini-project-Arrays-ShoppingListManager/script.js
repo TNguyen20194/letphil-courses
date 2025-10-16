@@ -43,7 +43,7 @@ const items = [];
 
 // Remove warning on input
 itemInput.addEventListener("input", () => {
-  warning.textContent = ""
+  warning.textContent = "";
 })
 
 // Handle RENDER
@@ -58,7 +58,13 @@ function renderAll() {
 
   });
 
-  countLabel.innerHTML = `Count: <strong>${items.length} items</strong>`
+  if(items != 0) {
+    countLabel.innerHTML = `Count: <strong>${items.length} items</strong>`
+  } else {
+    countLabel.innerHTML =  "";
+    itemInput.value = "";
+  }
+
 }
 
 // Handle ADD
@@ -78,19 +84,22 @@ function handleAdd() {
 
 // Remove LAST
 function handleRemove() {
+  warning.textContent = "";
+
   if(items.length > 0){
     items.pop();
-    warning.textContent = ""
+    warning.textContent = "";
+    renderAll();
   } else {
     warning.textContent = "There is no item in your list."
   }
-  renderAll();
 }
 
 // Handle CLEAR
 function handleClear() {
   items.length = 0;
   renderAll();
+  warning.textContent = "";
 }
 
 addBtn.addEventListener("click", handleAdd);
