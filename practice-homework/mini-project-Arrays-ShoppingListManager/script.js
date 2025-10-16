@@ -58,7 +58,7 @@ function renderAll() {
 
   });
 
-  if(items != 0) {
+  if(items.length !== 0) {
     countLabel.innerHTML = `Count: <strong>${items.length} items</strong>`
   } else {
     countLabel.innerHTML =  "";
