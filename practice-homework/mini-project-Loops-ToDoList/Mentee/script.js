@@ -24,32 +24,32 @@ generateBtn.addEventListener("click", () =>{
     taskList.innerHTML = "";
 
     // +++ FOR LOOP METHOD +++
-    // for(let i = 0; i < tasks.length; i++) {
-    //     const listItem = document.createElement("li");
-    //     listItem.textContent = tasks[i];
-    //     taskList.appendChild(listItem)
-    // };
+    for(let i = 0; i < tasks.length; i++) {
+        const listItem = document.createElement("li");
+        listItem.textContent = `(for loop): ${tasks[i]}`;
+        taskList.appendChild(listItem)
+    };
 
     // +++ WHILE LOOP METHOD +++
-    // let taskIndex = 0;
-    // while(taskIndex < tasks.length) {
-    //     const listItem = document.createElement("li");
-    //     listItem.textContent = tasks[taskIndex];
-    //     taskIndex++;
-    //     taskList.appendChild(listItem);
-    // }
+    let taskIndex = 0;
+    while(taskIndex < tasks.length) {
+        const listItem = document.createElement("li");
+        listItem.textContent = `(while loop): ${tasks[taskIndex]}`;
+        taskList.appendChild(listItem);
+        taskIndex++;
+    }
 
     // +++ FOR OF LOOP METHOD +++
-    // for(const value of tasks){
-    //     const listItem = document.createElement("li");
-    //     listItem.textContent = value;
-    //     taskList.appendChild(listItem)
-    // }
+    for(const value of tasks){
+        const listItem = document.createElement("li");
+        listItem.textContent = `(for...of loop): ${value}`;
+        taskList.appendChild(listItem)
+    }
 
     // +++ forEach LOOP METHOD +++
     tasks.forEach(value => {
         const listItem = document.createElement("li");
-        listItem.textContent = value;
+        listItem.textContent = `(forEach): ${value}`;
         taskList.appendChild(listItem)
     })
 
