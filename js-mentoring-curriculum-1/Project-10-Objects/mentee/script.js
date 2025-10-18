@@ -1,11 +1,29 @@
 // STEP 1: Create a simple object with keys and values
 // (Make a const object with properties like name, age, isStudent.)
 
+const student = {
+    name: "John Doe",
+    age: 28,
+    isStudent: true,
+}
+
 // STEP 2: Access values using dot notation
 // (Log object.property like person.name and person.age.)
 
+console.log(
+    student.name,
+    student.age,
+    student.isStudent
+)
+
 // STEP 3: Access values using bracket notation
 // (Log object["propertyName"].)
+
+console.log(
+    student["name"],
+    student["age"],
+    student["isStudent"]
+)
 
 // STEP 4: Add a new property to the object
 // (Assign a new key/value to your object, e.g. person.city = "...".)

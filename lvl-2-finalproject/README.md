@@ -6,13 +6,13 @@ These projects integrate **DOM manipulation, local storage, navigation, API usag
 
 ### 1. Personal Dashboard$
 
-**Tech:** HTML, CSS, JavaScript  
-**Features:**  
-✅ Dynamic welcome message based on the time of day  
-✅ Weather widget (Fetch API - OpenWeather)  
-✅ To-do list (Local Storage)  
-✅ Notes section (Local Storage)  
-✅ Navigation between sections (home, weather, tasks, notes)  
+**Tech:** HTML, CSS, JavaScript
+**Features:**
+✅ Dynamic welcome message based on the time of day
+✅ Weather widget (Fetch API - OpenWeather)
+✅ To-do list (Local Storage)
+✅ Notes section (Local Storage)
+✅ Navigation between sections (home, weather, tasks, notes)
 ✅ Responsive design
 
 ### 2. Recipe Finder App
@@ -58,53 +58,53 @@ These projects integrate **DOM manipulation, local storage, navigation, API usag
 
 ### 6. Job Application Tracker
 
-**Tech:** HTML, CSS, JavaScript  
-**Features:**  
-✅ Add job applications with details (company, position, status, notes)  
-✅ Edit/update application status (e.g., Applied, Interview, Rejected)  
-✅ Save data in Local Storage  
-✅ Filter by status or company name  
-✅ Responsive design with a simple dashboard  
+**Tech:** HTML, CSS, JavaScript
+**Features:**
+✅ Add job applications with details (company, position, status, notes)
+✅ Edit/update application status (e.g., Applied, Interview, Rejected)
+✅ Save data in Local Storage
+✅ Filter by status or company name
+✅ Responsive design with a simple dashboard
 ✅ Contact form for job application inquiries
 
 ### 7. Fitness Tracker
 
-**Tech:** HTML, CSS, JavaScript  
-**Features:**  
-✅ Log workouts (date, type, duration, notes)  
-✅ Save and retrieve workouts from Local Storage  
-✅ Fetch exercises from an API ([WGER Workout API](https://wger.de/en/software/api))  
-✅ Filter workouts by type (Cardio, Strength, etc.)  
+**Tech:** HTML, CSS, JavaScript
+**Features:**
+✅ Log workouts (date, type, duration, notes)
+✅ Save and retrieve workouts from Local Storage
+✅ Fetch exercises from an API ([WGER Workout API](https://wger.de/en/software/api))
+✅ Filter workouts by type (Cardio, Strength, etc.)
 ✅ Responsive layout with tabbed navigation
 
 ### 8. E-Commerce Product Showcase
 
-**Tech:** HTML, CSS, JavaScript  
-**Features:**  
-✅ Display products dynamically (API - [Fakestore API](https://fakestoreapi.com/))  
-✅ Add to favorites (Local Storage)  
-✅ Search and filter products by category  
-✅ Responsive design with a grid layout  
+**Tech:** HTML, CSS, JavaScript
+**Features:**
+✅ Display products dynamically (API - [Fakestore API](https://fakestoreapi.com/))
+✅ Add to favorites (Local Storage)
+✅ Search and filter products by category
+✅ Responsive design with a grid layout
 ✅ Contact form for product inquiries
 
 ### 9. Flashcard Study App
 
-**Tech:** HTML, CSS, JavaScript  
-**Features:**  
-✅ Create, edit, delete flashcards (Local Storage)  
-✅ Randomized card shuffle feature  
-✅ Track correct and incorrect answers  
-✅ Simple progress tracker  
+**Tech:** HTML, CSS, JavaScript
+**Features:**
+✅ Create, edit, delete flashcards (Local Storage)
+✅ Randomized card shuffle feature
+✅ Track correct and incorrect answers
+✅ Simple progress tracker
 ✅ Responsive design with animated card flipping
 
 ### 10. Daily Habit Tracker
 
-**Tech:** HTML, CSS, JavaScript  
-**Features:**  
-✅ Add daily habits (e.g., Drink Water, Read, Workout)  
-✅ Track habit completion with checkboxes (Local Storage)  
-✅ Streak counter for consistency  
-✅ Simple dashboard with progress visualization  
+**Tech:** HTML, CSS, JavaScript
+**Features:**
+✅ Add daily habits (e.g., Drink Water, Read, Workout)
+✅ Track habit completion with checkboxes (Local Storage)
+✅ Streak counter for consistency
+✅ Simple dashboard with progress visualization
 ✅ Responsive layout with dark mode option
 
 ---
