@@ -122,22 +122,22 @@ function showQuestion () {
   answerDiv.textContent = ''
 
   const currentQuestion = questions[currentIndex].question
-  const currentAnswerOptions = questions[currentIndex].answers
+  const answerOptions = questions[currentIndex].answers
 
-  console.log(currentAnswerOptions)
+  console.log(answerOptions)
 
-  questionText.textContent = currentQuestion
+  questionText.textContent = currentQuestion;
 
-  currentAnswerOptions.forEach((answer, index) => {
-    const answerBtn = document.createElement('button')
-    answerBtn.textContent = answer
+  answerOptions.forEach((answer, index) => {
+    const answerBtn = document.createElement('button');
+    answerBtn.textContent = answer;
 
-    answerBtn.classList.add('answer-btn')
-    answerBtn.setAttribute('data-index', index)
+    answerBtn.classList.add('answer-btn');
+    answerBtn.setAttribute('data-index', index);
     
-    answerBtn.addEventListener('click', handleAnswer)
+    answerBtn.addEventListener('click', handleAnswer);
 
-    answerDiv.appendChild(answerBtn)
+    answerDiv.appendChild(answerBtn);
   })
 
   // resetTimer();
@@ -160,7 +160,6 @@ Create a function named `handleAnswer` that:
 
 function handleAnswer (event) {
   clearInterval(timerDisplay);
-  let correctAnswer;
 
   const selectedAnswerIndex = Number(event.target.dataset.index);
   const correctIndex = questions[currentIndex].correct;
