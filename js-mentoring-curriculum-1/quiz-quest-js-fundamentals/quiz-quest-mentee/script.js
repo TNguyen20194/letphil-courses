@@ -69,10 +69,10 @@ You will need:
 - timerId        → to store setInterval reference
 */
 
-let currentIndex = 0
-let score = 0
-let timeLeft = 10
-let timerId
+let currentIndex = 0;
+let score = 0;
+let timeLeft = 10;
+let timerId;
 
 /* 
 STEP 4: ADD EVENT LISTENERS
