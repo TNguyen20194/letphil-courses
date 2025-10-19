@@ -12,6 +12,16 @@ Use `document.getElementById()` to store these in variables:
 - finalScoreEl         → p with id="final-score"
 - resultMsgEl          → h2 with id="result-message"
 */
+const startScreen = document.getElementById('start-screen')
+const questionScreen = document.getElementById('question-screen')
+const resultScreen = document.getElementById('result-screen')
+const startBtn = document.getElementById('start-btn')
+const restartBtn = document.getElementById('restart-btn')
+const questionText = document.getElementById('question-text')
+const answerDiv = document.getElementById('answers')
+const timerDisplay = document.getElementById('timer')
+const finalScoreEl = document.getElementById('final-score')
+const resultMsgEl = document.getElementById('result-message')
 
 /* 
 STEP 2: CREATE QUIZ QUESTIONS ARRAY
@@ -22,6 +32,34 @@ Each object should include:
 - correct: the index (0–3) of the correct answer
 */
 
+const questions = [
+  {
+    question: 'What animal is known as the king of the jungle?',
+    answers: ['Tiger', 'Elephant', 'Lion', 'Gorilla'],
+    correct: 2
+  },
+  {
+    question: 'Which country invented pizza?',
+    answers: ['France', 'Italy', 'Greece', 'Spain'],
+    correct: 1
+  },
+  {
+    question: 'What do bees collect and use to make honey?',
+    answers: ['Pollen', 'Water', 'Nectar', 'Leaves'],
+    correct: 2
+  },
+  {
+    question: 'If you freeze water, what do you get?',
+    answers: ['Snow', 'Ice', 'Fog', 'Steam'],
+    correct: 1
+  },
+  {
+    question: 'Which ocean is the largest?',
+    answers: ['Atlantic', 'Indian', 'Arctic', 'Pacific'],
+    correct: 3
+  }
+]
+
 /* 
 STEP 3: DEFINE STATE VARIABLES
 You will need:
@@ -31,12 +69,20 @@ You will need:
 - timerId        → to store setInterval reference
 */
 
+let currentIndex = 0
+let score = 0
+let timeLeft = 10
+let timerId
+
 /* 
 STEP 4: ADD EVENT LISTENERS
 Use `.addEventListener("click", ...)` on:
 - startBtn to call the `startGame()` function
 - restartBtn to call the same `startGame()` function
 */
+
+startBtn.addEventListener('click', startGame)
+restartBtn.addEventListener('click', startGame)
 
 /* 
 STEP 5: FUNCTION – startGame()
@@ -45,6 +91,17 @@ Create a function named `startGame` that:
 - Switches from the start screen to the question screen
 - Calls the `showQuestion()` function
 */
+
+// FUNCTIONS
+
+function startGame () {
+  currentIndex = 0
+  score = 0
+  startScreen.classList.remove('showing')
+  startScreen.classList.add('hidden')
+  questionScreen.classList.add('showing')
+  showQuestion()
+}
 
 /* 
 STEP 6: FUNCTION – showQuestion()
@@ -61,6 +118,31 @@ Create a function named `showQuestion` that:
 - Calls `resetTimer()`
 */
 
+function showQuestion () {
+  answerDiv.textContent = ''
+
+  const currentQuestion = questions[currentIndex].question
+  const currentAnswerOptions = questions[currentIndex].answers
+
+  console.log(currentAnswerOptions)
+
+  questionText.textContent = currentQuestion
+
+  currentAnswerOptions.forEach((answer, index) => {
+    const answerBtn = document.createElement('button')
+    answerBtn.textContent = answer
+
+    answerBtn.classList.add('answer-btn')
+    answerBtn.setAttribute('data-index', index)
+    
+    answerBtn.addEventListener('click', handleAnswer)
+
+    answerDiv.appendChild(answerBtn)
+  })
+
+  // resetTimer();
+}
+
 /* 
 STEP 7: FUNCTION – handleAnswer()
 Create a function named `handleAnswer` that:
@@ -75,6 +157,32 @@ Create a function named `handleAnswer` that:
     - If there are more questions, call `showQuestion()`
     - If quiz is over, call `showResults()`
 */
+
+function handleAnswer (event) {
+  clearInterval(timerDisplay);
+  let correctAnswer;
+
+  const selectedAnswerIndex = Number(event.target.dataset.index);
+  const correctIndex = questions[currentIndex].correct;
+  const answerButtons = Array.from(document.querySelectorAll("button.answer-btn"));
+
+  const isCorrect = selectedAnswerIndex === correctIndex;
+
+
+  answerButtons.forEach((button, index) => {
+    if(index === correctIndex){
+        button.classList.add("correct");
+    } else if(index === selectedAnswerIndex && !isCorrect) {
+        button.classList.add("wrong");
+    }
+    button.disabled = true;
+  })
+
+    //Increase score
+    score += isCorrect ? 1 : 0;
+    // Go to next question
+    currentIndex ++
+}
 
 /* 
 STEP 8: FUNCTION – showResults()
@@ -104,3 +212,11 @@ Create a function named `swapScreen(hideEl, showEl)` that:
 - Hides all elements with the class `.screen` using `classList.add("hidden")`
 - Shows the element passed as `showEl` using `classList.remove("hidden")`
 */
+
+function swapScreen (hideEl, showEl) {
+  const allScreens = document.querySelectorAll('.screen')
+
+  allScreens.forEach(screen => screen.classList.add('hidden'))
+
+  showEl.classList.remove('hidden')
+}
