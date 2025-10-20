@@ -34,29 +34,39 @@ Each object should include:
 
 const questions = [
   {
-    question: 'What animal is known as the king of the jungle?',
-    answers: ['Tiger', 'Elephant', 'Lion', 'Gorilla'],
+    question: "What keyword is used to declare a constant variable in JavaScript?",
+    answers: ["var", "let", "const", "static"],
     correct: 2
   },
   {
-    question: 'Which country invented pizza?',
-    answers: ['France', 'Italy', 'Greece', 'Spain'],
-    correct: 1
-  },
-  {
-    question: 'What do bees collect and use to make honey?',
-    answers: ['Pollen', 'Water', 'Nectar', 'Leaves'],
+    question: "What does 'NaN' stand for in JavaScript?",
+    answers: ["Not a Name", "No assigned Number", "Not a Number", "Null and Nothing"],
     correct: 2
   },
   {
-    question: 'If you freeze water, what do you get?',
-    answers: ['Snow', 'Ice', 'Fog', 'Steam'],
+    question: "Which symbol is used for comments in JavaScript?",
+    answers: ["//", "/*", "<!--", "#"],
+    correct: 0
+  },
+  {
+    question: "What will `typeof []` return?",
+    answers: ["array", "object", "list", "undefined"],
     correct: 1
   },
   {
-    question: 'Which ocean is the largest?',
-    answers: ['Atlantic', 'Indian', 'Arctic', 'Pacific'],
-    correct: 3
+    question: "What does `console.log()` do?",
+    answers: [
+      "Opens a log file",
+      "Prints text to the console",
+      "Creates a variable",
+      "Runs your code twice"
+    ],
+    correct: 1
+  },
+  {
+    question: "Which method adds an element to the end of an array?",
+    answers: ["push()", "pop()", "shift()", "join()"],
+    correct: 0
   }
 ]
 
@@ -95,11 +105,12 @@ Create a function named `startGame` that:
 // FUNCTIONS
 
 function startGame () {
-  currentIndex = 0
-  score = 0
-  startScreen.classList.remove('showing')
-  startScreen.classList.add('hidden')
-  questionScreen.classList.add('showing')
+  currentIndex = 0;
+  score = 0;
+  swapScreen(startScreen, questionScreen);
+//   startScreen.classList.remove('showing')
+//   startScreen.classList.add('hidden')
+//   questionScreen.classList.add('showing')
   showQuestion()
 }
 
@@ -124,23 +135,21 @@ function showQuestion () {
   const currentQuestion = questions[currentIndex].question
   const answerOptions = questions[currentIndex].answers
 
-  console.log(answerOptions)
-
-  questionText.textContent = currentQuestion;
+  questionText.textContent = currentQuestion
 
   answerOptions.forEach((answer, index) => {
-    const answerBtn = document.createElement('button');
-    answerBtn.textContent = answer;
+    const answerBtn = document.createElement('button')
+    answerBtn.textContent = answer
 
-    answerBtn.classList.add('answer-btn');
-    answerBtn.setAttribute('data-index', index);
-    
-    answerBtn.addEventListener('click', handleAnswer);
+    answerBtn.classList.add('answer-btn')
+    answerBtn.setAttribute('data-index', index)
 
-    answerDiv.appendChild(answerBtn);
+    answerBtn.addEventListener('click', handleAnswer)
+
+    answerDiv.appendChild(answerBtn)
   })
 
-  // resetTimer();
+  resetTimer();
 }
 
 /* 
@@ -159,28 +168,38 @@ Create a function named `handleAnswer` that:
 */
 
 function handleAnswer (event) {
-  clearInterval(timerDisplay);
+  clearInterval(timerId);
 
   const selectedAnswerIndex = Number(event.target.dataset.index);
   const correctIndex = questions[currentIndex].correct;
-  const answerButtons = Array.from(document.querySelectorAll("button.answer-btn"));
+  const answerButtons = Array.from(
+    document.querySelectorAll('button.answer-btn')
+  );
 
   const isCorrect = selectedAnswerIndex === correctIndex;
 
-
   answerButtons.forEach((button, index) => {
-    if(index === correctIndex){
-        button.classList.add("correct");
-    } else if(index === selectedAnswerIndex && !isCorrect) {
-        button.classList.add("wrong");
+    if (index === correctIndex) {
+      button.classList.add('correct')
+    } else if (index === selectedAnswerIndex && !isCorrect) {
+      button.classList.add('wrong')
     }
-    button.disabled = true;
-  })
+    button.disabled = true
+  });
 
-    //Increase score
-    score += isCorrect ? 1 : 0;
-    // Go to next question
-    currentIndex ++
+  //Increase score
+  score += isCorrect ? 1 : 0;
+
+  // Go to next question
+  currentIndex++;
+
+  setTimeout(() => {
+    if (currentIndex < questions.length) {
+      showQuestion()
+    } else {
+      showResults()
+    }
+  }, 1000);
 }
 
 /* 
@@ -194,6 +213,22 @@ Create a function named `showResults` that:
     - Less than half → “💀 Novice – Study the ancient scrolls again!”
 */
 
+function showResults () {
+  questionScreen.classList.remove('showing');
+  questionScreen.classList.add('hidden');
+  resultScreen.classList.add('showing');
+
+  finalScoreEl.textContent = `Your final score is: ${score}`;
+
+  if(score === questions.length){
+    resultMsgEl.textContent = "✨ Supreme Wizard of JavaScript! ✨";
+  } else if (score >= (questions.length/2) && score < questions.length) {
+    resultMsgEl.textContent = "🧙 Apprentice Mage – Keep Practicing!";
+  } else {
+    resultMsgEl.textContent = "💀 Novice – Study the ancient scrolls again!";
+  };
+}
+
 /* 
 STEP 9: FUNCTION – resetTimer()
 Create a function named `resetTimer` that:
@@ -205,7 +240,32 @@ Create a function named `resetTimer` that:
       (use: { target: { dataset: { index: -1 } } })
 */
 
-/* 
+function resetTimer() {
+    timeLeft = 10;
+
+    timerDisplay.textContent = timeLeft;
+
+    clearInterval(timerId);
+
+    timerId = setInterval(() => {
+        timeLeft-- ;
+        timerDisplay.textContent = timeLeft;
+
+        if(timeLeft <= 0) {
+            clearInterval(timerId)
+            handleAnswer(
+                { target:
+                    { dataset:
+                        { index: -1 }
+                    }
+                }
+            );
+        };
+
+    }, 1000)
+}
+
+/*
 STEP 10: FUNCTION – swapScreen()
 Create a function named `swapScreen(hideEl, showEl)` that:
 - Hides all elements with the class `.screen` using `classList.add("hidden")`
@@ -213,9 +273,10 @@ Create a function named `swapScreen(hideEl, showEl)` that:
 */
 
 function swapScreen (hideEl, showEl) {
-  const allScreens = document.querySelectorAll('.screen')
+  const allScreens = document.querySelectorAll(".screen")
 
-  allScreens.forEach(screen => screen.classList.add('hidden'))
+  allScreens.forEach(screen => screen.classList.add("hidden"));
 
-  showEl.classList.remove('hidden')
+  showEl.classList.remove("hidden");
+  showEl.classList.add("showing");
 }
