@@ -108,9 +108,6 @@ function startGame () {
   currentIndex = 0;
   score = 0;
   swapScreen(startScreen, questionScreen);
-//   startScreen.classList.remove('showing')
-//   startScreen.classList.add('hidden')
-//   questionScreen.classList.add('showing')
   showQuestion()
 }
 
