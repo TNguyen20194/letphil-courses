@@ -243,13 +243,13 @@ Create a function named `resetTimer` that:
 function resetTimer() {
     timeLeft = 10;
 
-    timerDisplay.textContent = timeLeft;
+    timerDisplay.textContent = `⏳ ${timeLeft}`;
 
     clearInterval(timerId);
 
     timerId = setInterval(() => {
         timeLeft-- ;
-        timerDisplay.textContent = timeLeft;
+        timerDisplay.textContent = `⏳ ${timeLeft}`;
 
         if(timeLeft <= 0) {
             clearInterval(timerId)
