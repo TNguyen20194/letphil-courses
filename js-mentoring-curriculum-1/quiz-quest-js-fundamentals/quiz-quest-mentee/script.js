@@ -12,16 +12,16 @@ Use `document.getElementById()` to store these in variables:
 - finalScoreEl         → p with id="final-score"
 - resultMsgEl          → h2 with id="result-message"
 */
-const startScreen = document.getElementById('start-screen')
-const questionScreen = document.getElementById('question-screen')
-const resultScreen = document.getElementById('result-screen')
-const startBtn = document.getElementById('start-btn')
-const restartBtn = document.getElementById('restart-btn')
-const questionText = document.getElementById('question-text')
-const answerDiv = document.getElementById('answers')
-const timerDisplay = document.getElementById('timer')
-const finalScoreEl = document.getElementById('final-score')
-const resultMsgEl = document.getElementById('result-message')
+const startScreen = document.getElementById('start-screen');
+const questionScreen = document.getElementById('question-screen');
+const resultScreen = document.getElementById('result-screen');
+const startBtn = document.getElementById('start-btn');
+const restartBtn = document.getElementById('restart-btn');
+const questionText = document.getElementById('question-text');
+const answerDiv = document.getElementById('answers');
+const timerDisplay = document.getElementById('timer');
+const finalScoreEl = document.getElementById('final-score');
+const resultMsgEl = document.getElementById('result-message');
 
 /* 
 STEP 2: CREATE QUIZ QUESTIONS ARRAY
@@ -68,7 +68,7 @@ const questions = [
     answers: ["push()", "pop()", "shift()", "join()"],
     correct: 0
   }
-]
+];
 
 /* 
 STEP 3: DEFINE STATE VARIABLES
@@ -91,8 +91,8 @@ Use `.addEventListener("click", ...)` on:
 - restartBtn to call the same `startGame()` function
 */
 
-startBtn.addEventListener('click', startGame)
-restartBtn.addEventListener('click', startGame)
+startBtn.addEventListener("click", startGame);
+restartBtn.addEventListener("click", startGame);
 
 /* 
 STEP 5: FUNCTION – startGame()
@@ -130,29 +130,29 @@ Create a function named `showQuestion` that:
 */
 
 function showQuestion () {
-  answerDiv.textContent = ''
+  answerDiv.textContent = "";
 
-  const currentQuestion = questions[currentIndex].question
-  const answerOptions = questions[currentIndex].answers
+  const currentQuestion = questions[currentIndex].question;
+  const answerOptions = questions[currentIndex].answers;
 
-  questionText.textContent = currentQuestion
+  questionText.textContent = currentQuestion;
 
   answerOptions.forEach((answer, index) => {
-    const answerBtn = document.createElement('button')
-    answerBtn.textContent = answer
+    const answerBtn = document.createElement('button');
+    answerBtn.textContent = answer;
 
-    answerBtn.classList.add('answer-btn')
-    answerBtn.setAttribute('data-index', index)
+    answerBtn.classList.add('answer-btn');
+    answerBtn.setAttribute('data-index', index);
 
-    answerBtn.addEventListener('click', handleAnswer)
+    answerBtn.addEventListener('click', handleAnswer);
 
-    answerDiv.appendChild(answerBtn)
+    answerDiv.appendChild(answerBtn);
   })
 
   resetTimer();
 }
 
-/* 
+/*
 STEP 7: FUNCTION – handleAnswer()
 Create a function named `handleAnswer` that:
 - Stops the timer using `clearInterval`
@@ -214,9 +214,7 @@ Create a function named `showResults` that:
 */
 
 function showResults () {
-  questionScreen.classList.remove('showing');
-  questionScreen.classList.add('hidden');
-  resultScreen.classList.add('showing');
+  swapScreen(questionScreen, resultScreen);
 
   finalScoreEl.textContent = `Your final score is: ${score}`;
 
@@ -275,8 +273,13 @@ Create a function named `swapScreen(hideEl, showEl)` that:
 function swapScreen (hideEl, showEl) {
   const allScreens = document.querySelectorAll(".screen")
 
-  allScreens.forEach(screen => screen.classList.add("hidden"));
+  allScreens.forEach((screen) => {
+    screen.classList.remove("showing");
+    screen.classList.add("hidden");
+    screen.setAttribute("aria-hidden", true);
+});
 
   showEl.classList.remove("hidden");
   showEl.classList.add("showing");
+  showEl.setAttribute("aria-hidden", false);
 }
