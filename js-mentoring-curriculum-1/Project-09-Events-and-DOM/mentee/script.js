@@ -11,6 +11,10 @@
      ➤ Call it dangerBtn
 */
 
+const primaryBtn = document.querySelector("button");
+const secondaryBtn = document.getElementById("btnById");
+const dangerBtn = document.getElementsByClassName("btnByClass")[0];
+
 /*
 📦 STEP 2: Grab other DOM elements you’ll need
 
@@ -20,6 +24,10 @@
 - Get all <button> elements → use querySelectorAll("button"), store in allButtonsNL
 */
 
+const message = document.getElementById("message");
+const messageTwo = document.getElementById("message2");
+const listItems = document.getElementsByTagName("li");
+const allButtons = document.querySelectorAll("button");
 /*
 🖨️ STEP 3: Console check
 
@@ -27,37 +35,77 @@ Log each of the variables from Step 1 and Step 2 to make sure everything is sele
 Use console.log() to check your work!
 */
 
-/*
-💡 STEP 4: Create 4 functions
+console.log(
+  primaryBtn,
+  secondaryBtn,
+  dangerBtn,
+  message,
+  messageTwo,
+  listItems,
+  allButtons
+);
 
-4A — showPrimaryMessage()
-  ➤ Change the innerText of #message to say: "Primary button clicked!"
-  ➤ Add the "highlight" class to #message
-  ➤ Log something to the console
+// 💡 STEP 4: Create 4 functions
 
-4B — showSecondaryMessage()
-  ➤ Change the innerText of #message2 to say: "Secondary button clicked!"
-  ➤ Toggle the "highlight" class on #message2 (use classList.toggle)
-  ➤ Log something to the console
+// 4A — showPrimaryMessage()
+//   ➤ Change the innerText of #message to say: "Primary button clicked!"
+//   ➤ Add the "highlight" class to #message
+//   ➤ Log something to the console
 
-4C — dangerAlert()
-  ➤ Show an alert box that says "⚠️ Danger button pressed!"
-  ➤ Also log to the console
+function showPrimaryMessage() {
+  message.innerHTML = "Primary button <strong>clicked!</strong>";
+  message.classList.add("highlight");
+  console.log("Primary button clicked!");
+}
 
-4D — countListItems()
-  ➤ Use listItems.length to count how many <li> tags are in the list
-  ➤ Log that number in the console
-*/
+// showPrimaryMessage();
 
-/*
-🔗 STEP 5: Add event listeners
+// 4B — showSecondaryMessage()
+//   ➤ Change the innerText of #message2 to say: "Secondary button clicked!"
+//   ➤ Toggle the "highlight" class on #message2 (use classList.toggle)
+//   ➤ Log something to the console
 
-➤ When primaryBtn is clicked → run showPrimaryMessage()
-➤ When secondaryBtn is clicked → run showSecondaryMessage()
-➤ When dangerBtn is clicked → run dangerAlert()
+function showSecondaryMessage() {
+  messageTwo.innerText = "Secondary button clicked!";
+  messageTwo.classList.toggle("highlight");
+  console.log("Show secondary Message clicked!");
+}
 
-Bonus:
-➤ Use a forEach loop on allButtonsNL to:
-   - log each button’s text when clicked
-   - run countListItems() every time ANY button is clicked
-*/
+// 4C — dangerAlert()
+//   ➤ Show an alert box that says "⚠️ Danger button pressed!"
+//   ➤ Also log to the console
+
+function dangerAlert() {
+  alert("⚠️ Danger button pressed!");
+  console.log("Danger button pressed!");
+}
+
+// 4D — countListItems()
+//   ➤ Use listItems.length to count how many <li> tags are in the list
+//   ➤ Log that number in the console
+function countListItems() {
+  const listItemCount = listItems.length;
+  console.log(listItemCount);
+}
+
+// 🔗 STEP 5: Add event listeners
+
+// ➤ When primaryBtn is clicked → run showPrimaryMessage()
+// ➤ When secondaryBtn is clicked → run showSecondaryMessage()
+// ➤ When dangerBtn is clicked → run dangerAlert()
+
+primaryBtn.addEventListener("click", showPrimaryMessage);
+secondaryBtn.addEventListener("click", showSecondaryMessage);
+dangerBtn.addEventListener("click", dangerAlert);
+
+// Bonus:
+// ➤ Use a forEach loop on allButtonsNL to:
+//    - log each button’s text when clicked
+//    - run countListItems() every time ANY button is clicked
+
+allButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    console.log(`${btn.textContent}logged through query selector all`);
+    countListItems();
+  });
+});

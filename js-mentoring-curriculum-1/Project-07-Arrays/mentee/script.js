@@ -156,9 +156,22 @@ console.log(upperFruits);
 // ==========================
 // STEP 11a: Use filter to make a new array with only fruits that have more than 5 letters.
 // STEP 11b: Use filter again to keep only fruits that contain the letter "a".
+const things = fruits.filter((fruit) => {
+  return fruit.length > 5;
+});
+console.log(things);
+
+console.log(fruits.filter((fruit) => fruit.includes("a")));
 
 // ==========================
 // REDUCE — Combine into one value
 // ==========================
 // STEP 12a: Use reduce to count the total number of letters across all fruits.
 // STEP 12b: Use reduce again to join all fruit names into a single string separated by commas.
+
+const allFruitsCharacterCount = fruits.reduce(
+  (acc, num) => acc + num.length,
+  []
+);
+
+console.log(allFruitsCharacterCount);
