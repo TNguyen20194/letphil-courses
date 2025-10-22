@@ -1,6 +1,10 @@
 // STEP 1: Create a base array named fruits with some items like "apple", "banana", "cherry".
 
+<<<<<<< HEAD
 const fruits = ["apple", "banana", "cherry"];
+=======
+let fruits = ["apple", "banana", "cherry"];
+>>>>>>> upstream/main
 
 // ==========================
 // PUSH — Add to the end
@@ -8,6 +12,20 @@ const fruits = ["apple", "banana", "cherry"];
 // STEP 2a: Use push to add "mango" to the end of fruits.
 // STEP 2b: Use push to add another fruit to the end.
 // STEP 2c: Use push again to add one more fruit at the end.
+fruits.push("mango");
+console.log(fruits);
+
+fruits.push("strawberry");
+console.log(fruits);
+
+fruits.push("grape");
+console.log(fruits);
+
+// fruits[2] = "mango";
+// console.log(fruits);
+
+// fruits.splice(2, 0, "mango");
+// console.log(fruits);
 
 fruits.push("mango");
 fruits.push("pineapple");
@@ -22,10 +40,20 @@ fruits.push("dragon fruit");
 // STEP 3c: Use pop one more time.
 
 fruits.pop();
+<<<<<<< HEAD
 fruits.pop();
 fruits.pop();
 
 // console.log(fruits)
+=======
+console.log(fruits);
+
+fruits.pop();
+console.log(fruits);
+
+fruits.pop();
+console.log(fruits);
+>>>>>>> upstream/main
 
 // ==========================
 // UNSHIFT — Add to the front
@@ -34,11 +62,22 @@ fruits.pop();
 // STEP 4b: Use unshift again with another fruit.
 // STEP 4c: Use unshift one more time.
 
+<<<<<<< HEAD
 fruits.unshift("strawberry");
 fruits.unshift("bluebery");
 fruits.unshift("raspberry");
 
 // console.log(fruits)
+=======
+fruits.unshift("grape");
+console.log(fruits);
+
+fruits.unshift("strawberry");
+console.log(fruits);
+
+fruits.unshift("Dragonfruit");
+console.log(fruits);
+>>>>>>> upstream/main
 
 // ==========================
 // SHIFT — Remove from the front
@@ -48,12 +87,23 @@ fruits.unshift("raspberry");
 // STEP 5c: Use shift one more time.
 
 fruits.shift();
+<<<<<<< HEAD
 fruits.shift();
 fruits.shift();
 
 // console.log(fruits)
 
 // ==========================
+=======
+console.log(fruits);
+
+fruits.shift();
+console.log(fruits);
+
+fruits.shift();
+console.log(fruits);
+
+>>>>>>> upstream/main
 // SLICE — Copy without changing original
 // ==========================
 // STEP 6a: Make a copy of the first two fruits using slice.
@@ -61,10 +111,20 @@ fruits.shift();
 // STEP 6c: Make a copy starting from index 1 using slice.
 
 const firstTwo = fruits.slice(0, 2);
+<<<<<<< HEAD
 const allFruits = fruits.slice();
 const index1 = fruits.slice(1);
 
 // console.log(index1)
+=======
+console.log(firstTwo);
+
+const allFruits = fruits.slice();
+console.log(allFruits);
+
+const oneFruit = fruits.slice(1);
+console.log(oneFruit);
+>>>>>>> upstream/main
 
 // ==========================
 // SPLICE — Mutate original array
@@ -74,11 +134,24 @@ const index1 = fruits.slice(1);
 // STEP 7c: Use splice to replace one item at index 0 with "grape".
 
 fruits.splice(1, 1);
+<<<<<<< HEAD
 fruits.splice(2, 0, "kiwi");
 fruits.splice(0, 1, "grape");
 
 console.log(fruits);
 
+=======
+console.log(fruits);
+
+fruits.splice(2, 0, "Kiwi");
+console.log(fruits);
+
+fruits.splice(0, 1, "grape");
+console.log(fruits);
+
+//.splice(startIndex, deleteCount, newItem1, newItem2)
+
+>>>>>>> upstream/main
 // ==========================
 // SEARCHING — includes + indexOf
 // ==========================
@@ -86,10 +159,24 @@ console.log(fruits);
 // STEP 8b: Check if fruits includes another fruit.
 // STEP 8c: Find the indexOf "banana" (or another fruit).
 
+<<<<<<< HEAD
 console.log(fruits.includes("apple"));
 console.log(fruits.includes("kiwi"));
 console.log(fruits.indexOf("grape"))
 
+=======
+// const test = fruits.includes("apple");
+// console.log(test);
+// console.log(fruits);
+
+console.log(fruits.includes("apple"));
+
+const hasCherry = fruits.includes("cherry");
+console.log(hasCherry);
+
+const bananaIndex = fruits.indexOf("banana");
+console.log(`Index of Banana: ${bananaIndex}`);
+>>>>>>> upstream/main
 
 // ==========================
 // LOOPING — for...of and forEach
@@ -98,6 +185,7 @@ console.log(fruits.indexOf("grape"))
 // STEP 9b: Loop through fruits with forEach and log each fruit with "Fruit: " before it.
 // STEP 9c: Use forEach to log the length of each fruit name.
 
+<<<<<<< HEAD
 for(const fruit of fruits){
     console.log(fruit)
 }
@@ -109,6 +197,19 @@ fruits.forEach(fruit => {
 fruits.forEach(fruit => {
     console.log(`${fruit} has a length of ${fruit.length} characters`)
 })
+=======
+for (const fruit of fruits) {
+  console.log(fruit);
+}
+
+fruits.forEach((fruit) => {
+  console.log(`Fruit: ${fruit}`);
+});
+
+fruits.forEach((fruit) => {
+  console.log(fruit, "has a length of", fruit.length, "characters");
+});
+>>>>>>> upstream/main
 
 // ==========================
 // MAP — Transform each item
@@ -116,16 +217,27 @@ fruits.forEach(fruit => {
 // STEP 10a: Use map to create a new array with each fruit name in UPPERCASE.
 // STEP 10b: Use map again to create an array of fruit name lengths.
 
+<<<<<<< HEAD
 const upperFruits = fruits.map(fruit => fruit.toUpperCase());
 const fruitNameLength = fruits.map(fruit => `${fruit} has a length of ${fruit.length} characters`);
 
 console.log(fruitNameLength);
+=======
+const upperFruits = fruits.map((fruit) => fruit.toUpperCase());
+console.log(upperFruits);
+>>>>>>> upstream/main
 
 // ==========================
 // FILTER — Keep only some items
 // ==========================
 // STEP 11a: Use filter to make a new array with only fruits that have more than 5 letters.
 // STEP 11b: Use filter again to keep only fruits that contain the letter "a".
+const things = fruits.filter((fruit) => {
+  return fruit.length > 5;
+});
+console.log(things);
+
+console.log(fruits.filter((fruit) => fruit.includes("a")));
 
 const filterFruits = fruits.filter(fruit => fruit.length > 5);
 const fruitWithLetterA = fruits.filter(fruit => fruit.includes("a"))
@@ -139,6 +251,7 @@ console.log(fruitWithLetterA)
 // STEP 12b: Use reduce again to join all fruit names into a single string separated by commas.
 
 const allFruitsCharacterCount = fruits.reduce(
+<<<<<<< HEAD
     (acc, num) => acc + num.length, 0
 );
 
@@ -148,3 +261,10 @@ const joinedFruits = fruits.reduce(
 
 console.log(allFruitsCharacterCount);
 console.log(joinedFruits)
+=======
+  (acc, num) => acc + num.length,
+  []
+);
+
+console.log(allFruitsCharacterCount);
+>>>>>>> upstream/main
