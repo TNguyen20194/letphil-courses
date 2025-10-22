@@ -16,29 +16,23 @@ const student = {
 // STEP 2: Access values using dot notation
 // (Log object.property like person.name and person.age.)
 
-<<<<<<< HEAD
 console.log(
     student.name,
     student.age,
     student.isStudent
 )
-=======
 console.log(person.name, person.age);
 // console.log(person.age);
->>>>>>> upstream/main
 
 // STEP 3: Access values using bracket notation
 // (Log object["propertyName"].)
 
-<<<<<<< HEAD
 console.log(
     student["name"],
     student["age"],
     student["isStudent"]
 )
-=======
 console.log(person["isStudent"]);
->>>>>>> upstream/main
 
 // STEP 4: Add a new property to the object
 // (Assign a new key/value to your object, e.g. person.city = "...".)
