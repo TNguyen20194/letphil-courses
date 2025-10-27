@@ -10,6 +10,11 @@ STEP 1 — Create these DOM references (exact names):
   - const clearBtn = document.getElementById("clearBtn")
 */
 
+const form = document.getElementById("contactForm");
+const contactsList = document.getElementById("contacts");
+const status = document.getElementById("status");
+const clearBtn = document.getElementById("clearBtn");
+
 /*
 STEP 2 — Write a helper function named createContactCard(dataObject)
   - Function name: createContactCard
@@ -27,6 +32,49 @@ STEP 2 — Write a helper function named createContactCard(dataObject)
         - badge (only if fav is true)
     STEP 2D — return card
 */
+
+// { first, last, email, phone, fav }
+
+const testObject = {
+  first: "Truong",
+  last: "Nguyen",
+  email: "truong.nguyen@email.com",
+  phone: 6478909984,
+  fav: "Coding"
+}
+
+function createContactCard(dataObject) {
+  // object destructuring
+  const {first, last, email, phone, fav} = dataObject;
+
+  const f = first ? first.trim() : "";
+  const l = last ? last.trim() : "";
+
+  const initials = `${f ? f[0] : null}${l ? l[0] : null}`.toUpperCase();
+
+  const card = document.createElement("div");
+  card.className = "contact";
+
+  card.innerHTML = `
+    <div class="avata">${initials}</div>
+    <div class="contact-body">
+      <div class="name">${first} ${last}</div>
+          <div class="meta">
+            <p class="email">${email}</p>
+            <p class="phone">${phone}</p>
+          </div>
+    </div>
+    ${fav ? `<div class="badge">*</div>` : ""}
+  `;
+
+  console.log(testObject)
+  console.log(card)
+
+  return card;
+}
+
+
+createContactCard(testObject)
 
 /*
 STEP 3 — Write a helper function named showToast()
