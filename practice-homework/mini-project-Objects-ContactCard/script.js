@@ -34,7 +34,6 @@ STEP 2 — Write a helper function named createContactCard(dataObject)
 */
 
 // { first, last, email, phone, fav }
-
 const testObject = {
   first: "John",
   last: "Doe",
@@ -56,7 +55,7 @@ function createContactCard(dataObject) {
   card.className = "contact";
 
   card.innerHTML = `
-    <div class="avata">${initials}</div>
+    <div class="avatar">${initials}</div>
     <div class="contact-body">
       <div class="name">${first} ${last}</div>
           <div class="meta">
@@ -73,20 +72,33 @@ function createContactCard(dataObject) {
   return card;
 }
 
-
-createContactCard(testObject)
-
 /*
 STEP 3 — Write a helper function named showToast()
   - Function name: showToast
   - Action: unhides #status, then hides it after 2000ms
 */
+function showToast() {
+  status.hidden = false;
+
+  setTimeout(() => {
+    status.hidden = true;
+  }, 2000
+  )
+}
+
 
 /*
 STEP 4 — Write a helper function named removeEmptyState()
   - Function name: removeEmptyState
   - Action: if an element with class ".empty" exists inside #contacts, remove it
 */
+function removeEmptyState() {
+  const emptyMessage = contactsList.querySelector(".empty");
+
+  if(emptyMessage) {
+    emptyMessage.remove();
+  }
+}
 
 /*
 STEP 5 — Write a helper function named restoreEmptyState()
@@ -107,3 +119,9 @@ STEP 6 — Add a "submit" listener on form that runs an inline function
 STEP 7 — Add a "click" listener on clearBtn
   - When clicked, call restoreEmptyState()
 */
+
+
+
+removeEmptyState()
+showToast()
+createContactCard(testObject)
