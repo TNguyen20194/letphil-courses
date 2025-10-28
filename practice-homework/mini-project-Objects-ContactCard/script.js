@@ -38,7 +38,7 @@ const testObject = {
   last: "Doe",
   email: "john.doe@email.com",
   phone: 0123456789,
-  fav: "Coding"
+  fav: true
 }
 
 function createContactCard(dataObject) {
@@ -83,7 +83,6 @@ function showToast() {
   }, 2000
   )
 };
-
 
 /*
 STEP 4 — Write a helper function named removeEmptyState()
