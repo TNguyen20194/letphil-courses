@@ -36,10 +36,10 @@ STEP 2 — Write a helper function named createContactCard(dataObject)
 // { first, last, email, phone, fav }
 
 const testObject = {
-  first: "Truong",
-  last: "Nguyen",
-  email: "truong.nguyen@email.com",
-  phone: 6478909984,
+  first: "John",
+  last: "Doe",
+  email: "john.doe@email.com",
+  phone: 0123456789,
   fav: "Coding"
 }
 
