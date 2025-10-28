@@ -33,7 +33,6 @@ STEP 2 — Write a helper function named createContactCard(dataObject)
     STEP 2D — return card
 */
 
-// { first, last, email, phone, fav }
 const testObject = {
   first: "John",
   last: "Doe",
@@ -63,14 +62,13 @@ function createContactCard(dataObject) {
             <p class="phone">${phone}</p>
           </div>
     </div>
-    ${fav ? `<div class="badge">*</div>` : ""}
+    ${fav ? `<div class="badge"></div>` : ""}
   `;
 
-  console.log(testObject)
   console.log(card)
 
   return card;
-}
+};
 
 /*
 STEP 3 — Write a helper function named showToast()
@@ -84,7 +82,7 @@ function showToast() {
     status.hidden = true;
   }, 2000
   )
-}
+};
 
 
 /*
@@ -98,13 +96,19 @@ function removeEmptyState() {
   if(emptyMessage) {
     emptyMessage.remove();
   }
-}
+};
 
 /*
 STEP 5 — Write a helper function named restoreEmptyState()
   - Function name: restoreEmptyState
   - Action: replace the innerHTML of #contacts with the default empty-state block
 */
+
+function restoreEmptyState() {
+  contactsList.innerHTML = `
+  <div class="empty">No contacts yet - add your first one!</div>
+  `
+};
 
 /*
 STEP 6 — Add a "submit" listener on form that runs an inline function
@@ -115,13 +119,35 @@ STEP 6 — Add a "submit" listener on form that runs an inline function
   - Call showToast(), then reset the form
 */
 
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const first = document.getElementById("firstName");
+  const last = document.getElementById("lastName");
+  const email = document.getElementById("email");
+  const phone = document. getElementById("phone");
+  const fav = document.getElementById("fav");
+
+  const dataObject = {
+    first: first.value,
+    last: last.value,
+    email: email.value,
+    phone: phone.value,
+    fav: fav.checked
+  }
+
+  const card = createContactCard(dataObject);
+  removeEmptyState();
+
+  contactsList.appendChild(card);
+  showToast();
+  form.reset();
+})
+
 /*
 STEP 7 — Add a "click" listener on clearBtn
   - When clicked, call restoreEmptyState()
 */
-
-
-
-removeEmptyState()
-showToast()
-createContactCard(testObject)
+clearBtn.addEventListener("click", () => {
+  restoreEmptyState();
+})
