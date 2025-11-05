@@ -11,3 +11,14 @@
 // 🖥️ STEP 4: DISPLAY THE VISIT COUNT
 // Use document.getElementById() to select the element that will show the count (id="visitDisplay").
 // Update its textContent to tell the user how many times they’ve visited.
+
+let visitCount = localStorage.getItem("visits");
+
+visitCount = visitCount ? parseInt(visitCount) : 0;
+
+visitCount++;
+
+localStorage.setItem("visits", visitCount);
+
+let renderDisplay = document.getElementById("visitDisplay");
+renderDisplay.textContent = `This website has been visited ${visitCount}`;
