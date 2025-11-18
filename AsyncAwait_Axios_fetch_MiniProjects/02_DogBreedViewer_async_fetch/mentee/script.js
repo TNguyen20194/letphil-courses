@@ -23,3 +23,21 @@
 // - We use an <img> tag with the URL and style it to fit nicely
 
 // 🧠 STEP 9: If something goes wrong (like no internet), show an error message
+
+const breedSelect = document.getElementById("breedSelect");
+const fetchBtn = document.getElementById("fetchBtn");
+const imageContainer = document.getElementById("imageContainer");
+
+fetchBtn.addEventListener("click", async () => {
+  const breed = breedSelect.value;
+  const url = `https://dog.ceo/api/breed/${breed}/images/random`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    const image = data.message;
+    imageContainer.innerHTML = `<img src="${image}" alt="${breed}" style="width: 100%; border-radius: 8px;"/>`;
+  } catch (err) {
+    imageContainer.innerHTML = `<p style= "color:red;"> "Something went wrong :(" </p>`;
+  }
+});
