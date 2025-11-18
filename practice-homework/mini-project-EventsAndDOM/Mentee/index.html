@@ -13,18 +13,28 @@
   </head>
   <body>
     <!-- STEP 4: Add a container <main class="app"> -->
+    <!-- STEP 5: Heading -->
+    <!-- Add <h1> "🧩 Eventful To‑Do Playground" -->
     <main class="app">
-      <!-- STEP 5: Heading -->
-      <!-- Add <h1> "🧩 Eventful To‑Do Playground" -->
+      <h1>🧩 Eventful To‑Do Playground</h1>
 
       <!-- ========== COUNTER ========== -->
       <!-- STEP 6: Add a section with an <h2> "Counter" -->
       <!-- Add a <p id="countValue">0</p> to display the number -->
       <!-- Add a <button id="btnIncrement">+1</button> -->
+      <section>
+        <h2>Counter</h2>
+        <p id="countValue">0</p>
+        <button id="btnIncrement">+1</button>
+      </section>
 
       <!-- ========== THEME TOGGLE ========== -->
       <!-- STEP 7: Add a section with an <h2> "Theme" -->
       <!-- Add a <button id="btnTheme">Toggle Theme</button> -->
+      <section>
+        <h2>Theme</h2>
+        <button id="btnTheme">Toggle Theme</button>
+      </section>
 
       <!-- ========== ADD TASK ========== -->
       <!-- STEP 8: Add a section with an <h2> "Tasks" -->
@@ -33,14 +43,31 @@
       <!-- Add a <span id="priorityLabel">Priority: Low</span> for live display -->
       <!-- Add a <button id="btnAdd">Add Task</button> -->
       <!-- Add an empty <ul id="taskList"></ul> where tasks appear -->
-
+      <section>
+        <h2>Task</h2>
+        <input type="text" id="taskInput" placeholder="Type a task" />
+        <select name="" id="prioritySelect">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <span id="priorityLabel">Priority: Low</span>
+        <button id="btnAdd">Add Task</button>
+        <ul id="taskList"></ul>
+      </section>
       <!-- ========== FORM DEMO ========== -->
       <!-- STEP 9: Add a <form id="demoForm"> with an input <input id="nameInput" placeholder="Your name" /> -->
       <!-- Inside the form, add a <button type="submit">Submit</button> -->
       <!-- Add a <p id="formMsg"> to show a success message without reloading -->
+        <form id="demoForm" action="">
+          <input type="text" id="nameInput" placeholder="Your name">
+          <button type="submit">Submit</button>
+          <p id="formMsg"></p>
+        </form>
 
       <!-- ========== HOVER CARD ========== -->
       <!-- STEP 10: Add a <div id="hoverCard" class="card">Hover me</div> -->
+       <div id="hoverCard" class="card">Hover me</div>
     </main>
   </body>
 </html>
