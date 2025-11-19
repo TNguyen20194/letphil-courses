@@ -35,3 +35,28 @@
 
 // 🧠 STEP 8: If something goes wrong (e.g., country not found), show an error message
 // - The error might be because the country doesn't exist or the API is down
+
+const countryInput = document.getElementById("countryInput");
+const searchBtn = document.getElementById("searchBtn");
+const countryDisplay = document.getElementById("countryDisplay");
+
+searchBtn.addEventListener("click", async () => {
+  const country = countryInput.value.trim();
+  const url = `https://restcountries.com/v3.1/name/${country}`;
+
+  try {
+    const response = await axios.get(url);
+    const data = response.data[0];
+    const name = data.name.common;
+    const capital = data.capital[0];
+    const population = data.population.toLocaleString();
+    const flag = data.flags.svg;
+    countryDisplay.innerHTML = `<img src="${flag}" alt="${name}"style= "width:100px;"/>
+        <h2>${name}</h2>
+        <p> <strong>Capital: </strong>${capital}</p>
+        <p><strong>Population: </strong>${population}</p>`;
+  } catch (err) {
+    countryDisplay.innerHTML =
+      "<p style= 'color: red;'> Something went wrong or the country doesn't exist</p>";
+  }
+});
