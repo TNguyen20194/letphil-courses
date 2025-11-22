@@ -22,6 +22,13 @@ const formMsg = document.getElementById("formMsg");
 const hoverCard = document.getElementById("hoverCard");
 
 
+btnAdd.disabled = true;
+
+function updateBtnState() {
+   const hasInput = taskInput.value.trim().length > 0;
+   btnAdd.disabled = !hasInput;
+};
+
 // -----------------------------------------------------------------------
 // STEP B — CLICK: COUNTER
 // - Add a click listener to btnIncrement
@@ -51,16 +58,23 @@ btnTheme.addEventListener("click", () => {
 
 taskInput.addEventListener("input", () =>  {
     const taskInputValue = taskInput.value.trim();
-    console.log(`Live text: ${taskInputValue}`)
+    console.log(`Live text: ${taskInputValue}`);
+
+    updateBtnState();
 });
 
 prioritySelect.addEventListener("change", () => {
     priorityLabel.textContent = `Priority: ${prioritySelect.value}`;
 });
 
+btnAdd.addEventListener("click", addTask);
+
 taskInput.addEventListener("keydown", (event) => {
-    console.log(event)
-    if(event.key === "Enter") {
+    if(event.key === "Enter" && event.ctrlKey) {
+        prioritySelect.value = "High";
+        priorityLabel.textContent = "Priority: High";
+        addTask();
+    } else if(event.key === "Enter"){
         addTask();
     }
 })
@@ -97,6 +111,7 @@ function addTask() {
 
     taskInput.value = "";
     taskInput.focus();
+    updateBtnState();
 }
 
 // -----------------------------------------------------------------------
@@ -105,6 +120,16 @@ function addTask() {
 // - Inside, check if event.target has data-action="delete"
 // - If yes, remove the parent <li>
 
+taskList.addEventListener("click", (event) => {
+    if(event.target.dataset.action === "delete") {
+        const li = event.target.closest("li");
+        console.log(li);
+        if(li) {
+            li.remove();
+        }
+    }
+})
+
 // -----------------------------------------------------------------------
 // STEP G — FORM SUBMIT (PREVENT DEFAULT)
 // - Add submit listener to demoForm
@@ -112,13 +137,34 @@ function addTask() {
 // - Build a friendly text using nameInput.value and show it in formMsg
 // - Optionally clear the input
 
+demoForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const name = nameInput.value.trim();
+    if(!name) return;
+    formMsg.textContent = `Hey ${name}, you got this!`;
+
+    nameInput.value = "";
+})
+
 // -----------------------------------------------------------------------
 // STEP H — MOUSEOVER / MOUSEOUT
 // - Add mouseover listener to hoverCard to add class "highlight"
 // - Add mouseout listener to remove class "highlight"
+
+hoverCard.addEventListener("mouseover", () => {
+    hoverCard.classList.add("highlight")
+});
+
+hoverCard.addEventListener("mouseout", () => {
+    hoverCard.classList.remove("highlight")
+})
 
 // -----------------------------------------------------------------------
 // STEP I — BONUS IDEAS
 // - Disable Add button when input is empty (use .disabled = true/false)
 // - Pressing Ctrl+Enter adds a task with "High" priority automatically
 // - Persist tasks to localStorage and load them on page load
+
+//Update button state upon refresh
+updateBtnState();
