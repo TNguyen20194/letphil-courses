@@ -97,3 +97,35 @@
 // 4) You read from localStorage and validated the saved value.
 // 5) You chose a safe initial language and applied it.
 // 6) You saved changes to localStorage and updated the UI immediately.
+
+const languageSelect = document.getElementById("languageSelect");
+const message = document.getElementById("message");
+
+const messages = {
+    en : "Welcome! Your language is saved.",
+    es: "¡Bienvenida! Tu idioma se ha guardado.",
+    fr: "Bienvenue ! Votre langue a été enregistrée.",
+    de: "Willkommen! Ihre Sprache wurde gespeichert.",
+    ja: "ようこそ！言語が保存されました。"
+}
+
+function applyLang(lang) {
+    document.documentElement.setAttribute("lang", lang);
+    languageSelect.value = lang;
+    message.textContent = messages[lang] || messages.en;
+}
+
+const savedLang = localStorage.getItem("language");
+ 
+const optionExists = !!languageSelect.querySelector(`option[value="${savedLang}"]`);
+console.log(optionExists)
+
+const initialLang = optionExists ? savedLang : "en";
+
+applyLang(initialLang);
+
+languageSelect.addEventListener("change", () => {
+    const chosenLanguage = languageSelect.value;
+    localStorage.setItem("language", chosenLanguage);
+    applyLang(chosenLanguage);
+})

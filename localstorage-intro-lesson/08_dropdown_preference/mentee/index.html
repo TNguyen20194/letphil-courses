@@ -16,13 +16,13 @@
          - rel="stylesheet" tells the browser this file contains CSS.
          - href="styles.css" must match the exact filename.
     -->
-    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <link rel="stylesheet" href="styles.css" />
 
     <!-- ✅ STEP 5: LINK YOUR JS FILE (script.js) USING defer
          INSTRUCTION: Remove the comment marks around the next line when your script.js exists.
          - defer waits for the HTML to load before running JS (prevents null element errors).
     -->
-    <!-- <script src="script.js" defer></script> -->
+    <script src="script.js" defer></script>
   </head>
   <body>
     <main id="app" role="main" aria-label="Language preference demo">
@@ -31,8 +31,10 @@
            - Create a <label> element with text: “Choose your language:”.
            - Add for="languageSelect" so the label is connected to the <select> by id.
       -->
-      <!-- Your <label> goes here -->
-
+      <label for="languageSelect">
+          Choose your language
+      </label>
+   
       <!-- ✅ STEP 7: ADD THE <select> DROPDOWN
            INSTRUCTION:
            - Create a <select> element with id="languageSelect" and name="language".
@@ -44,7 +46,13 @@
                <option value="ja">Japanese</option>  (ISO code is 'ja', not 'jp')
            - The option “value” is what we’ll save in localStorage.
       -->
-      <!-- Your <select> + <option> elements go here -->
+         
+      <select name="language" id="languageSelect">
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="de">German</option>
+          <option value="ja">Japanese</option>
+      </select>
 
       <!-- ✅ STEP 8: ADD A PARAGRAPH to show a message in the chosen language
            INSTRUCTION:
@@ -52,6 +60,7 @@
            - Add aria-live="polite" so screen readers politely announce updates.
       -->
       <!-- Your <p id="message" aria-live="polite"></p> goes here -->
+       <p id="message" aria-live="polite"></p>
     </main>
   </body>
 </html>
