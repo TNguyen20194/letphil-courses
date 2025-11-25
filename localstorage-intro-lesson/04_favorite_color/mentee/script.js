@@ -21,14 +21,15 @@ const colorValue = document.getElementById("colorInput");
 const button = document.getElementById("saveColorBtn");
 const colorDisplay = document.getElementById("colorDisplay");
 
-const saveColor = localstorage.getItem("favoriteColor");
+
+const saveColor = localStorage.getItem("favoriteColor");
 if (saveColor) {
   colorDisplay.textContent = saveColor;
   colorDisplay.style.color = saveColor;
 }
 
 button.addEventListener("click", () => {
-  const color = colorValue.value;
+  let color = colorValue.value;
   localStorage.setItem("favoriteColor", color);
   colorDisplay.textContent = color;
   colorDisplay.style.color = color;

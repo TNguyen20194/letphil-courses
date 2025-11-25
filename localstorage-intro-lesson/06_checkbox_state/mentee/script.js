@@ -10,3 +10,37 @@
 // Inside the listener:
 // - Get the current checkbox state (true or false)
 // - Save it using localStorage.setItem("isSubscribed", value)
+
+
+const checkbox = document.getElementById("subscribeCheckbox");
+const statusText = document.getElementById("statusText");
+const resetBtn = document.getElementById("resetBtn");
+
+const checkState = localStorage.getItem("isSubscribed");
+
+if(checkState) {
+    checkbox.checked = true;
+};
+
+// Checkbox functionality
+checkbox.addEventListener("change", () => {
+    const isChecked = checkbox.checked;
+
+    if(isChecked) {
+        statusText.textContent = "Subscribed!"
+    } else {
+        statusText.textContent = "Not subscribed"
+    };
+
+    localStorage.setItem("isSubscribed", isChecked);
+});
+
+// Reset Btn functionality
+resetBtn.addEventListener("click", () => {
+    if(checkState) {
+        checkbox.checked = false;
+        statusText.textContent = "Not subscribed";
+        localStorage.removeItem("isSubscribed");
+    }
+
+})

@@ -46,6 +46,7 @@ searchBtn.addEventListener("click", async () => {
 
   try {
     const response = await axios.get(url);
+    console.log(response)
     const data = response.data[0];
     const name = data.name.common;
     const capital = data.capital[0];
