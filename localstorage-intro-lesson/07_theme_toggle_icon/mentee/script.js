@@ -13,3 +13,43 @@
 // - When clicked, toggle the "dark" class on the body
 // - Save the new theme ("dark" or "light") to localStorage
 // - Update the icon to reflect the current theme
+
+
+const toggleThemeBtn = document.getElementById("toggleThemeBtn");
+const themeIcon = document.getElementById("themeIcon");
+const body = document.body;
+
+const savedTheme = localStorage.getItem("pageTheme");
+
+function updateIcon() {
+    themeIcon.textContent = body.classList.contains("dark") ? "🌙" : "☀️";
+}
+
+if(savedTheme === "dark") {
+    body.classList.add("dark");
+};
+
+updateIcon();
+
+toggleThemeBtn.addEventListener("click", () => {
+    body.classList.toggle("dark");
+    localStorage.setItem("pageTheme",
+       body.classList.contains("dark") ? "dark" : "light");
+    updateIcon();
+})
+
+// if(savedTheme === "dark") {
+//     body.classList.add("dark");
+//     themeIcon.textContent = "🌙"
+// } else {
+//     themeIcon.textContent = "☀️"
+// };
+
+// toggleThemeBtn.addEventListener("click", () => {
+//     body.classList.toggle("dark");
+
+//     localStorage.setItem("pageTheme",
+//         body.classList.contains("dark") ? "dark" : "light");
+
+//     themeIcon.textContent = body.classList.contains("dark") ? "🌙" : "☀️";
+// })
