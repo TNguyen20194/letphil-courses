@@ -107,16 +107,16 @@ const messages = {
     fr: "Bienvenue ! Votre langue a été enregistrée.",
     de: "Willkommen! Ihre Sprache wurde gespeichert.",
     ja: "ようこそ！言語が保存されました。"
-}
+};
 
 function applyLang(lang) {
     document.documentElement.setAttribute("lang", lang);
     languageSelect.value = lang;
     message.textContent = messages[lang] || messages.en;
-}
+};
 
 const savedLang = localStorage.getItem("language");
- 
+
 const optionExists = !!languageSelect.querySelector(`option[value="${savedLang}"]`);
 console.log(optionExists)
 
@@ -128,4 +128,4 @@ languageSelect.addEventListener("change", () => {
     const chosenLanguage = languageSelect.value;
     localStorage.setItem("language", chosenLanguage);
     applyLang(chosenLanguage);
-})
+});
