@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project-01 — Passing "Props" & Destructuring</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- 
+      🧠 PROJECT GOAL
+
+      Build a small "Student Focus Board" that:
+
+      - Shows a grid of student cards.
+      - Each card is built from a student OBJECT (like React "props").
+      - Uses OBJECT DESTRUCTURING to pull out the fields we need.
+      - Uses ARRAY DESTRUCTURING for skills.
+      - Uses functions that receive a "props" object and destructure parameters.
+
+      This HTML file ONLY gives you STRUCTURE INSTRUCTIONS in comments.
+      You will write the tags and attributes yourself.
+      All behaviour (rendering cards, filtering by level, etc.) goes in script.js.
+    -->
+
+    <!-- 
+      STEP 1 — Main wrapper
+
+      1. Create a <main> element.
+      2. Give it class="app".
+
+      Everything else goes inside this <main>.
+    -->
+
+    <!-- 
+      STEP 2 — Title and subtitle
+
+      Inside <main class="app">:
+
+      1. Add an <h1> with text like:
+         "🎓 Student Focus Board"
+
+      2. Add a <p> with:
+         - class="subtitle"
+         - Text explaining that you are practicing:
+           - passing "props" (objects) into functions
+           - object & array destructuring.
+    -->
+
+    <!-- 
+      STEP 3 — Layout container
+
+      Inside <main>:
+
+      1. Add a <section> with class="layout".
+
+      This will contain TWO child <section> elements:
+      - LEFT: filters + explanation about destructuring.
+      - RIGHT: the student cards grid + details.
+    -->
+
+    <!-- 
+      STEP 4 — LEFT CARD: Filters + explanation
+
+      Inside <section class="layout">:
+
+      1. Add a <section> with class="card".
+
+      2. Inside this card:
+
+         a) Add an <h2> with text like "Filters & View".
+
+         b) Add a <div class="field-group"> that will hold LEVEL filter chips:
+            - Add three <button> elements with class="chip", each with:
+              • A data-level attribute, e.g. data-level="all", "beginner", "intermediate", "advanced"
+              • Text: "All", "Beginner", "Intermediate", "Advanced"
+              • Give "All" an extra class "active" so it looks selected by default.
+
+         c) Add an <input type="text"> for a simple name search:
+            - id="searchInput"
+            - placeholder like: "Search by name..."
+
+         d) Add a <div class="button-row"> with:
+            - A main <button> to "Highlight JS lovers":
+              • id="highlightJsBtn"
+            - A ghost-style <button> to "Reset highlight":
+              • class="button-ghost"
+              • id="resetHighlightBtn"
+
+         e) Add a <p> with:
+            - class="status"
+            - id="helperStatus"
+            - Text can be empty or a short hint.
+
+         f) Add a <div> with class="details-box" where you briefly explain
+            what "props" mean in this project:
+
+            - This text is static HTML, something like:
+              "Each student card is built from a single object passed into a function,
+               similar to how React components receive props."
+
+    -->
+
+    <!-- 
+      STEP 5 — RIGHT CARD: Cards grid + selected details
+
+      Still inside <section class="layout">:
+
+      1. Add another <section> with class="card".
+
+      2. Inside this card:
+
+         a) Add an <h2> like "Student Cards".
+
+         b) Add a <div> with:
+            - id="cardsGrid"
+            - class="cards-grid"
+
+            Inside this <div> put a <p> with:
+            - class="empty-state"
+            - id="emptyState"
+            - Text: "No students match the current filters."
+
+            JavaScript will later remove this and insert .student-card elements.
+
+         c) Below the grid, add another <div> with:
+            - id="selectedDetails"
+            - class="details-box"
+
+            Inside, you can add placeholder text like:
+            "Click on a card to see a destructured summary here."
+
+    -->
+
+    <!-- STEP 6 — Connect JavaScript
+
+      Before closing </body>
+
+        <script src="script.js"></script>   -->
+
+    <main class="app">
+      <h1>🎓 Student Focus Board</h1>
+      <p class="subtitle">
+        Passing "props" (objects) into functions - object & array destructuring.
+      </p>
+      <section class="layout">
+        <section class="card">
+          <h2>Filters & View</h2>
+          <div class="field-group">
+            <button class="chip active" data-level="all">All</button>
+            <button class="chip" data-level="beginner">Beginner</button>
+            <button class="chip" data-level="intermediate">Intermediate</button>
+            <button class="chip" data-level="advanced">Advanced</button>
+          </div>
+          <input id="searchInput" type="text" placeholder="Search by name..." />
+
+          <div class="button-row">
+            <button type="button" id="highlightJsBtn">
+              Highlight JS lovers
+            </button>
+            <button class="button-ghost" id="resetHighlightBtn">
+              Reset highlight
+            </button>
+          </div>
+
+          <p class="status" id="helperStatus"></p>
+          <div class="details-box">
+            Each student card is built from a single object passed into a
+            function, similar to how React components receive props.
+          </div>
+          
+        </section>
+         <section class="card">
+          <h2>Student Cards</h2>
+          <div id="cardGrid" class="cards-grid">
+            <p class="empty-state" id="emptyState">No students match the current filters.</p> 
+      </div>
+      <div id="selectedDetails" class="details-box">Click on a card to see a destructured summary here.
+      </div>
+      
+    </section>
+        
+    </main>
+    <script src="script.js"></script>
+  </body>
+</html>
