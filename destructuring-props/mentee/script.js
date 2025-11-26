@@ -1,4 +1,4 @@
-// Project-01 — Passing "Props" & Destructuring
+,e// Project-01 — Passing "Props" & Destructuring
 // -------------------------------------------------------------
 // In this project, you will practice:
 // - treating objects like "props" passed into functions
@@ -89,18 +89,7 @@
 //
 // 2. Inside the function:
 //
-//    - Use OBJECT DESTRUCTURING to pull out the skills array:
-//        const { skills } = student;
-//
-//    - Use ARRAY DESTRUCTURING to grab the first two skills:
-//
-//        const [firstSkill, secondSkill] = skills;
-//
-//      (You can also grab a third skill with a default value if needed.)
-//
-//    - Build and return a string like:
-//
-//        `Top skills: ${firstSkill || "N/A"}, ${secondSkill || "N/A"}`.
+ 
 
 // 🧠 STEP 5 — FILTERING STUDENTS (ARRAY METHODS + DESTRUCTURING)
 //
@@ -276,3 +265,206 @@
 // - Nested destructuring
 // - Array destructuring
 // - DOM + events + array methods working together.
+
+const searchInput = document.getElementById("searchInput");
+const highlightJsBtn = document.getElementById("highlightJsBtn");
+const resetHighlightBtn = document.getElementById("resetHighlightBtn");
+const helperStatus = document.getElementById("helperStatus");
+const cardsGrid = document.getElementById("cardsGrid");
+const emptyState = document.getElementById("emptyState");
+const selectedDetails = document.getElementById("selectedDetails");
+
+const levelChips = document.querySelectorAll(".chip[data-level]");
+
+const students = [
+  {
+    id: 1,
+    name: "Truong",
+    role: "Beginner JS", // e.g. "Frontend Dev", "Beginner JS"
+    level: "beginner", // "beginner" | "intermediate" | "advanced"
+    favoriteLang: "JavaScript", // e.g. "JavaScript"
+    hoursPerWeek: 8, // study hours
+    skills: "['HTML','TypeScript', 'Git', 'SQL']", // e.g. ["HTML", "CSS", "JavaScript"]
+    location: {
+      city: "Toronto",
+      timezone: "EST",
+    },
+  },
+  {
+    id: 2,
+    name: "Maria",
+    role: "Advanced JS", // e.g. "Frontend Dev", "Beginner JS"
+    level: "advanced", // "beginner" | "intermediate" | "advanced"
+    favoriteLang: "JavaScript", // e.g. "JavaScript"
+    hoursPerWeek: 4, // study hours
+    skills: "['HTML','CSS', 'JavaScript', React']", // e.g. ["HTML", "CSS", "JavaScript"]
+    location: {
+      city: "Miami",
+      timezone: "EST",
+    },
+  },
+  {
+    id: 3,
+    name: "Trong",
+    role: "React Explorer", // e.g. "Frontend Dev", "Beginner JS"
+    level: "intermediate", // "beginner" | "intermediate" | "advanced"
+    favoriteLang: "SQL", // e.g. "JavaScript"
+    hoursPerWeek: 6, // study hours
+    skills: "['HTML','CSS', 'JavaScript','React','SQL']", // e.g. ["HTML", "CSS", "JavaScript"]
+    location: {
+      city: "Atlanta",
+      timezone: "EST",
+    },
+  },
+  {
+    id: 4,
+    name: "Luis",
+    role: "API Master", // e.g. "Frontend Dev", "Beginner JS"
+    level: "beginner", // "beginner" | "intermediate" | "advanced"
+    favoriteLang: "JavaScript", // e.g. "JavaScript"
+    hoursPerWeek: 8, // study hours
+    skills: "['JavaScript','REST Apis', 'Python']", // e.g. ["HTML", "CSS", "JavaScript"]
+    location: {
+      city: "Mexico",
+      timezone: "EST",
+    },
+  },
+];
+
+
+let currentLevelFilter = "all";
+let currentSearchTerm = "";
+let highlightJsFans = false;
+
+function setHelperStatus(message){
+helperStatus.textContent = message;
+helperStatus.classList.remove("highlight");
+if(message){
+helperStatus.classList.add("highlight");
+}
+};
+
+
+function buildStudentTagLine({name, favoriteLang, hoursPerWeek}) {
+    return `${name} is focusing on ${favoriteLang} ~ ${hoursPerWeek}h/week`
+};
+
+function getLocationSummary({name, location: {city, timezone}}) {
+    return `${name} is studying from ${city} (${timezone}).`;
+}
+
+function getTopSkillsSummary(student) {
+    const {skills} = student;
+
+    const [firstSkill, secondSkill] = skills;
+    const safeFirst = firstSkill || "N/A";
+    const safeSecond = secondSkill || "N/A";
+    return  `Top skills: ${safeFirst}, ${safeSecond}`;
+    
+    
+    
+}
+    
+
+
+
+// STEP 5 — FILTERING STUDENTS (ARRAY METHODS + DESTRUCTURING)
+//
+// 1. Define a function named getVisibleStudents (no parameters).
+//
+// 2. Inside:
+//
+//    - Start with a const named filteredByLevel that filters the students array
+//      based on currentLevelFilter:
+//
+//        - If currentLevelFilter is "all", keep all students.
+//        - Otherwise, only keep students where student.level === currentLevelFilter.
+//
+//    - Then create a const named filteredBySearch:
+//        - If currentSearchTerm is empty, just use filteredByLevel.
+//        - Else, filter filteredByLevel again so that:
+//            - student.name.toLowerCase() includes currentSearchTerm.toLowerCase()
+//
+//    - Return filteredBySearch.
+
+function getVisibleStudents () {
+    let filteredByLevel = students;
+    if(currentLevelFilter !== "all") {
+        filteredByLevel = students.filter((student) => student.level === currentLevelFilter);
+
+
+    }
+
+    // const filteredByLevel = students.filter((student) => {
+    //     if(currentLevelFilter !== "all") {
+    //         student.level === currentLevelFilter
+    //     }
+    // })
+}
+
+
+
+
+// 🧠 STEP 6 — RENDERING A SINGLE CARD USING DESTRUCTURING
+//
+// 1. Define a function named createStudentCard that receives a single parameter:
+//      student
+//
+// 2. In the PARAMETER list, use OBJECT DESTRUCTURING with RENAMING, e.g.:
+//
+//      function createStudentCard({
+//        id,
+//        name,
+//        role,
+//        level,
+//        favoriteLang,
+//        hoursPerWeek,
+//        skills,
+//        location: { city }
+//      }) { ... }
+//
+//    This is the core "props + destructuring" idea.
+//
+// 3. Inside the function:
+//
+//    - Create a <article> element and assign it class "student-card".
+//    - Set a data-id attribute to the id.
+//
+//    - Create a header <div> with class "student-header".
+//      Inside, create:
+//        • <span class="student-name"> with the name.
+//        • <span class="student-role"> with the role.
+//
+//    - Create a <p class="student-tagline"> and set its textContent
+//      to the result of buildStudentTagline( /* pass an object with at least
+//      name, favoriteLang, hoursPerWeek */ ).
+//
+//      NOTE: Here you can practice calling buildStudentTagline in two ways:
+//        - with a full student object
+//        - or by passing a smaller "props" object like:
+//              { name, favoriteLang, hoursPerWeek }
+//
+//    - Create a <div class="pill-row"> for level + hours + city:
+//
+//        • Level pill:
+//            - <span class="pill level-..."> e.g. "Beginner"
+//              Class should depend on level:
+//                "level-beginner", "level-intermediate", or "level-advanced".
+//
+//        • Hours pill:
+//            - <span class="pill pill-hours"> e.g. "6 h/week"
+//
+//        • City pill:
+//            - <span class="pill pill-city"> e.g. city name.
+//
+//    - Create a <div class="skills"> and for each skill string in the skills array,
+//      create a <span class="skill-tag"> with the skill text.
+//
+//    - If highlightJsFans is true AND favoriteLang is "JavaScript":
+//        - You can add an inline style or extra class to the card
+//          to make it stand out (e.g. a subtle border or glow).
+//
+//    - Add a click event listener to the card:
+//        • When clicked, call a function showSelectedStudentSummary(student).
+//
+//    - RETURN the card element.
