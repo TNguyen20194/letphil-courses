@@ -20,3 +20,45 @@
 // - Loop through the users array and create an <li> for each one
 // - Add a remove ❌ button next to each user
 // - When clicked, it removes the user from the array and updates localStorage
+
+const nameInput = document.getElementById("nameInput");
+const emailInput = document.getElementById("emailInput");
+const addUserBtn = document.getElementById("addUserBtn");
+const userList = document.getElementById("userList");
+
+const savedUsers = JSON.parse(localStorage.getItem("users")) || [];
+displayUsers();
+
+addUserBtn.addEventListener("click", () => {
+    const userInfo = {
+        name: nameInput.value,
+        email: emailInput.value
+    }
+
+    savedUsers.push(userInfo);
+    localStorage.setItem("users", JSON.stringify(savedUsers));
+
+    nameInput.value = "";
+    emailInput.value = "";
+    displayUsers();
+});
+
+function displayUsers() {
+    userList.textContent = "";
+
+    savedUsers.forEach((user, index) => {
+        const li = document.createElement("li");
+        li.textContent = `${user.name} ${user.email}`;
+
+        const removeBtn = document.createElement("button");
+        removeBtn.textContent = "❌";
+        removeBtn.addEventListener("click", () => {
+            savedUsers.splice(index, 1);
+            localStorage.setItem("users", JSON.stringify(savedUsers));
+            displayUsers();
+        });
+
+        li.appendChild(removeBtn);
+        userList.appendChild(li);
+    })
+}
