@@ -284,7 +284,7 @@ const students = [
     level: "beginner", // "beginner" | "intermediate" | "advanced"
     favoriteLang: "JavaScript", // e.g. "JavaScript"
     hoursPerWeek: 8, // study hours
-    skills: "['HTML','TypeScript', 'Git', 'SQL']", // e.g. ["HTML", "CSS", "JavaScript"]
+    skills: ['HTML','TypeScript', 'Git', 'SQL'], // e.g. ["HTML", "CSS", "JavaScript"]
     location: {
       city: "Toronto",
       timezone: "EST",
@@ -297,7 +297,7 @@ const students = [
     level: "advanced", // "beginner" | "intermediate" | "advanced"
     favoriteLang: "JavaScript", // e.g. "JavaScript"
     hoursPerWeek: 4, // study hours
-    skills: "['HTML','CSS', 'JavaScript', React']", // e.g. ["HTML", "CSS", "JavaScript"]
+    skills: ['HTML','CSS', 'JavaScript', 'React'], // e.g. ["HTML", "CSS", "JavaScript"]
     location: {
       city: "Miami",
       timezone: "EST",
@@ -310,7 +310,7 @@ const students = [
     level: "intermediate", // "beginner" | "intermediate" | "advanced"
     favoriteLang: "SQL", // e.g. "JavaScript"
     hoursPerWeek: 6, // study hours
-    skills: "['HTML','CSS', 'JavaScript','React','SQL']", // e.g. ["HTML", "CSS", "JavaScript"]
+    skills: ['HTML','CSS', 'JavaScript','React','SQL'], // e.g. ["HTML", "CSS", "JavaScript"]
     location: {
       city: "Atlanta",
       timezone: "EST",
@@ -323,7 +323,7 @@ const students = [
     level: "beginner", // "beginner" | "intermediate" | "advanced"
     favoriteLang: "JavaScript", // e.g. "JavaScript"
     hoursPerWeek: 8, // study hours
-    skills: "['JavaScript','REST Apis', 'Python']", // e.g. ["HTML", "CSS", "JavaScript"]
+    skills: ['JavaScript','REST Apis', 'Python'], // e.g. ["HTML", "CSS", "JavaScript"]
     location: {
       city: "Mexico",
       timezone: "EST",
@@ -331,17 +331,25 @@ const students = [
   },
 ];
 
+// const student1Skill = students[0].skills;
+
+// student1Skill.forEach(skill => {
+//     console.log("Skill:", skill);
+// });
+
+// console.log(student1Skill)
 
 let currentLevelFilter = "all";
 let currentSearchTerm = "";
 let highlightJsFans = false;
 
 function setHelperStatus(message){
-helperStatus.textContent = message;
-helperStatus.classList.remove("highlight");
-if(message){
-helperStatus.classList.add("highlight");
-}
+    helperStatus.textContent = message;
+    helperStatus.classList.remove("highlight");
+
+    if(message){
+    helperStatus.classList.add("highlight");
+    }
 };
 
 
@@ -384,22 +392,121 @@ function getTopSkillsSummary(student) {
 //
 //    - Return filteredBySearch.
 
-function getVisibleStudents () {
+function getVisibleStudents() {
     let filteredByLevel = students;
 
     if(currentLevelFilter !== "all") {
         filteredByLevel = students.filter(student => {
-            student.level === currentLevelFilter;
-        }
-    )}
+           return student.level === currentLevelFilter;
+        });
+    };
 
+    let filteredBySearch = filteredByLevel;
+
+    if(currentSearchTerm !== "") {
+        filteredBySearch = filteredByLevel.filter(student => {
+           return student.name.toLocaleLowerCase().includes(currentSearchTerm.toLocaleLowerCase());
+        });
+    };
+
+    return filteredBySearch;
     // const filteredByLevel = students.filter((student) => {
     //     if(currentLevelFilter !== "all") {
     //         student.level === currentLevelFilter
     //     }
     // })
-    return filteredByLevel;
 };
+
+
+function createStudentCard({
+       id,
+       name,
+       role,
+       level,
+       favoriteLang,
+       hoursPerWeek,
+       skills,
+       location: { city }
+     }) {
+        const article = document.createElement("article");
+        article.classList.add("student-card");
+        article.setAttribute("data-id", id);
+
+        // Student header
+        const headerDiv = document.createElement("div");
+        headerDiv.classList.add("student-header");
+
+        const studentName = document.createElement("span");
+        studentName.classList.add("student-name");
+        studentName.textContent = name;
+
+        const studentRole = document.createElement("span");
+        studentRole.classList.add("student-role");
+        studentRole.textContent = role;
+
+        headerDiv.append(studentName, studentRole);
+
+        // Studnet tag line
+        const tagLine = document.createElement("p");
+        tagLine.textContent = buildStudentTagLine({name, favoriteLang, hoursPerWeek});
+
+        // Pill level row
+        const pillRow = document.createElement("div");
+        pillRow.classList.add("pill-row");
+
+        const levelPill = document.createElement("span");
+        levelPill.classList.add("pill", `level-${level.toLocaleLowerCase()}`);
+        levelPill.textContent = level;
+
+        const hoursPill = document.createElement("span");
+        hoursPill.classList.add("pill", "pill-hours");
+        hoursPill.textContent = `${hoursPerWeek} h/week`;
+
+        const cityPill = document.createElement("span");
+        cityPill.classList.add("pill", "pill-city");
+        cityPill.textContent = city;
+
+        pillRow.append(levelPill, hoursPill, cityPill);
+
+        // Skills
+        const skillsContainer = document.createElement("div");
+        skillsContainer.classList.add("skills");
+
+        skills.forEach(skill => {
+            const skillText = document.createElement("span");
+            skillText.classList.add("skill-tag");
+            skillText.textContent = skill;
+
+            if(highlightJsFans && favoriteLang === "JavaScript") {
+                skillText.style.border = "1px solid gold";
+            };
+
+            skillsContainer.appendChild(skillText);
+        });
+
+
+        // Complete student card
+        article.addEventListener("click", showSelectedStudentSummary)
+        article.append(headerDiv, tagLine, pillRow, skillsContainer);
+
+
+        return article;
+}
+
+
+createStudentCard({
+        id: 4,
+    name: "Luis",
+    role: "API Master", // e.g. "Frontend Dev", "Beginner JS"
+    level: "beginner", // "beginner" | "intermediate" | "advanced"
+    favoriteLang: "JavaScript", // e.g. "JavaScript"
+    hoursPerWeek: 8, // study hours
+    skills: ['JavaScript','REST Apis', 'Python'], // e.g. ["HTML", "CSS", "JavaScript"]
+    location: {
+      city: "Mexico",
+      timezone: "EST",
+    },
+     })
 
 // 🧠 STEP 6 — RENDERING A SINGLE CARD USING DESTRUCTURING
 //
