@@ -121,3 +121,4 @@
 // - renderPlaylist(playlist)
 // - loadTheme()
 // 🧪 Console log to confirm the app has been initialized
+console.log("test")
