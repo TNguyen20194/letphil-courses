@@ -1,4 +1,4 @@
-,e// Project-01 — Passing "Props" & Destructuring
+// Project-01 — Passing "Props" & Destructuring
 // -------------------------------------------------------------
 // In this project, you will practice:
 // - treating objects like "props" passed into functions
@@ -360,11 +360,8 @@ function getTopSkillsSummary(student) {
     const safeFirst = firstSkill || "N/A";
     const safeSecond = secondSkill || "N/A";
     return  `Top skills: ${safeFirst}, ${safeSecond}`;
-    
-    
-    
+
 }
-    
 
 
 
@@ -389,21 +386,20 @@ function getTopSkillsSummary(student) {
 
 function getVisibleStudents () {
     let filteredByLevel = students;
+
     if(currentLevelFilter !== "all") {
-        filteredByLevel = students.filter((student) => student.level === currentLevelFilter);
-
-
-    }
+        filteredByLevel = students.filter(student => {
+            student.level === currentLevelFilter;
+        }
+    )}
 
     // const filteredByLevel = students.filter((student) => {
     //     if(currentLevelFilter !== "all") {
     //         student.level === currentLevelFilter
     //     }
     // })
-}
-
-
-
+    return filteredByLevel;
+};
 
 // 🧠 STEP 6 — RENDERING A SINGLE CARD USING DESTRUCTURING
 //
