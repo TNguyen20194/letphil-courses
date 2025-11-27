@@ -121,4 +121,142 @@
 // - renderPlaylist(playlist)
 // - loadTheme()
 // 🧪 Console log to confirm the app has been initialized
-console.log("test")
+
+const titleInput = document.getElementById("title");
+const artistInput = document.getElementById("artist");
+const linkInput = document.getElementById("link");
+const mood = document.getElementById("mood");
+const songForm = document.getElementById("songForm");
+const playlistContainer = document.getElementById("playlist");
+const filterMoodSelect = document.getElementById("filterMood");
+const shuffleBtn = document.getElementById("shuffleBtn");
+const toggleModeBtn = document.getElementById("toggleModeBtn");
+
+const body = document.body;
+
+let playlist = [];
+
+// songObject = {title, artist, mood, link}
+
+function loadPlaylist() {
+  const savedData = localStorage.getItem("customPlaylist");
+  playlist = savedData ? JSON.parse(savedData) : [];
+
+  console.log(playlist)
+};
+
+function savePlaylist() {
+  const playListString = JSON.stringify(playlist);
+  localStorage.setItem("customPlaylist", playListString);
+};
+
+function renderPlaylist(songsToRender) {
+  playlistContainer.innerHTML = "";
+
+  songsToRender.forEach((song, index) => {
+    const songCard = document.createElement("div");
+    songCard.classList.add("song-card");
+
+    // Real index of song
+    const songIndex = playlist.indexOf(song);
+
+    songCard.innerHTML = `
+    <strong>${song.title}</strong><br>
+    <em>Artist:</em> ${song.artist}<br>
+    <em>Mood:</em> ${song.mood}<br>
+    <a href="${song.link}" target="_blank">🎧 Listen</a><br>
+    <button class="delete-btn" data-index="${songIndex}">🗑️ Delete</button>
+    `
+    playlistContainer.appendChild(songCard);
+  });
+
+  const deleteBtn = document.querySelectorAll(".delete-btn");
+  deleteBtn.forEach(button => {
+    button.addEventListener("click", () => {
+      const index = button.dataset.index;
+      console.log("Deleting song at index: ", index);
+
+      playlist.splice(index, 1);
+      savePlaylist();
+      renderPlaylist(playlist);
+    })
+  })
+}
+
+function addSong(e) {
+  e.preventDefault();
+
+  const newSong = {
+    title: titleInput.value.trim(),
+    artist: artistInput.value.trim(),
+    mood: mood.value,
+    link: linkInput.value.trim()
+  };
+
+  playlist.push(newSong);
+  savePlaylist();
+  renderPlaylist(playlist);
+  songForm.reset();
+
+  console.log("New song added:", newSong)
+};
+
+
+function filterPlaylist() {
+  const selectedMood = filterMoodSelect.value;
+
+  if(selectedMood === "All") {
+    renderPlaylist(playlist);
+  } else {
+    const filteredSong = playlist.filter(song => song.mood.toLowerCase() === selectedMood.toLowerCase());
+    console.log("Filter song: ", filteredSong)
+    renderPlaylist(filteredSong)
+  }
+};
+
+function shufflePlaylist() {
+  for(let i = playlist.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+
+    [playlist[i], playlist[j]] = [playlist[j], playlist[i]];
+  };
+
+  savePlaylist();
+  renderPlaylist(playlist);
+};
+
+
+function toggleDarkMode() {
+  body.classList.toggle("dark");
+
+  const isDark = body.classList.contains("dark");
+  toggleModeBtn.textContent = isDark ? "Light Mode" : "Dark Mode";
+
+  localStorage.setItem(
+    "theme",
+    isDark ? "dark" : "light"
+  )
+};
+
+function loadTheme() {
+  const savedTheme = localStorage.getItem("theme");
+
+  if(savedTheme === "dark") {
+    body.classList.add("dark");
+    toggleModeBtn.textContent = "Light Mode";
+  } else {
+    body.classList.remove("dark");
+    toggleModeBtn.textContent = "Dark Mode";
+  }
+}
+
+
+
+songForm.addEventListener("submit", addSong);
+filterMoodSelect.addEventListener("change", filterPlaylist);
+shuffleBtn.addEventListener("click", shufflePlaylist);
+toggleModeBtn.addEventListener("click", toggleDarkMode);
+
+loadPlaylist();
+renderPlaylist(playlist);
+loadTheme();
