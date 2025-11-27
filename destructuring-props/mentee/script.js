@@ -405,7 +405,7 @@ function getVisibleStudents() {
 
     if(currentSearchTerm !== "") {
         filteredBySearch = filteredByLevel.filter(student => {
-           return student.name.toLocaleLowerCase().includes(currentSearchTerm.toLocaleLowerCase());
+           return student.name.toLowerCase().includes(currentSearchTerm.toLowerCase());
         });
     };
 
@@ -416,7 +416,6 @@ function getVisibleStudents() {
     //     }
     // })
 };
-
 
 function createStudentCard({
        id,
@@ -473,40 +472,66 @@ function createStudentCard({
         skillsContainer.classList.add("skills");
 
         skills.forEach(skill => {
-            const skillText = document.createElement("span");
-            skillText.classList.add("skill-tag");
-            skillText.textContent = skill;
+            const skillName = document.createElement("span");
+            skillName.classList.add("skill-tag");
+            skillName.textContent = skill;
 
             if(highlightJsFans && favoriteLang === "JavaScript") {
-                skillText.style.border = "1px solid gold";
+                skillName.style.border = "1px solid gold";
             };
 
-            skillsContainer.appendChild(skillText);
+            skillsContainer.appendChild(skillName);
         });
 
 
         // Complete student card
-        article.addEventListener("click", showSelectedStudentSummary)
+        // article.addEventListener("click", showSelectedStudentSummary)
         article.append(headerDiv, tagLine, pillRow, skillsContainer);
 
+        console.log(article)
 
         return article;
-}
+};
+
+function renderStudents() {
+    cardsGrid.innerHTML = "";
+
+    const visibleStudents = getVisibleStudents();
+    console.log(visibleStudents)
+
+    if(visibleStudents.length === 0) {
+        cardsGrid.appendChild(emptyState);
+        return;
+    } else {
+        
+        if(cardsGrid.contains(emptyState)){
+            emptyState.remove();
+        }
+
+        visibleStudents.forEach(student => {
+            const card = createStudentCard(student);
+            cardsGrid.appendChild(card);
+        });
+    }
+};
+
+renderStudents()
 
 
-createStudentCard({
-        id: 4,
-    name: "Luis",
-    role: "API Master", // e.g. "Frontend Dev", "Beginner JS"
-    level: "beginner", // "beginner" | "intermediate" | "advanced"
-    favoriteLang: "JavaScript", // e.g. "JavaScript"
-    hoursPerWeek: 8, // study hours
-    skills: ['JavaScript','REST Apis', 'Python'], // e.g. ["HTML", "CSS", "JavaScript"]
-    location: {
-      city: "Mexico",
-      timezone: "EST",
-    },
-     })
+
+// createStudentCard({
+//         id: 4,
+//     name: "Luis",
+//     role: "API Master", // e.g. "Frontend Dev", "Beginner JS"
+//     level: "beginner", // "beginner" | "intermediate" | "advanced"
+//     favoriteLang: "JavaScript", // e.g. "JavaScript"
+//     hoursPerWeek: 8, // study hours
+//     skills: ['JavaScript','REST Apis', 'Python'], // e.g. ["HTML", "CSS", "JavaScript"]
+//     location: {
+//       city: "Mexico",
+//       timezone: "EST",
+//     },
+//      })
 
 // 🧠 STEP 6 — RENDERING A SINGLE CARD USING DESTRUCTURING
 //
