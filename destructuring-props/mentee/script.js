@@ -483,9 +483,17 @@ function createStudentCard({
             skillsContainer.appendChild(skillName);
         });
 
+        const student = {
+        name,
+        level,
+        favoriteLang,
+        hoursPerWeek,
+        skills,
+        location: { city }
+    };
 
         // Complete student card
-        // article.addEventListener("click", showSelectedStudentSummary)
+        article.addEventListener("click", () => showSelectedStudentSummary(student));
         article.append(headerDiv, tagLine, pillRow, skillsContainer);
 
         console.log(article)
@@ -503,7 +511,6 @@ function renderStudents() {
         cardsGrid.appendChild(emptyState);
         return;
     } else {
-        
         if(cardsGrid.contains(emptyState)){
             emptyState.remove();
         }
@@ -515,7 +522,24 @@ function renderStudents() {
     }
 };
 
-renderStudents()
+function showSelectedStudentSummary({
+        name,
+        level,
+        favoriteLang,
+        hoursPerWeek,
+        skills,
+        location: { city, timezone }
+      }
+) {
+    const summaryText =
+`${buildStudentTagLine({ name, favoriteLang, hoursPerWeek })}
+${getLocationSummary({name, location: {city, timezone}})}
+${getTopSkillsSummary({ skills })}`;
+
+    selectedDetails.textContent = summaryText;
+}
+
+renderStudents();
 
 
 
